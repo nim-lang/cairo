@@ -1,7 +1,7 @@
 [Package]
 name: "cairo"
-version: "VER"
-author: "FOO"
+version: "1.0"
+author: "Andreas Rumpf"
 description: "Wrapper for cairo, a vector graphics library with display and print output"
 license: "MIT"
 
