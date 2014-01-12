@@ -731,3 +731,7 @@ proc checkStatus*(s: cairo.TStatus) {.noinline.} =
     raise newException(EAssertionFailed, $statusToString(s))
 
 
+# new since 1.10
+proc surface_create_for_rectangle*(target: PSurface, x,y,w,h: cdouble):
+    PSurface {.cdecl, importc: "cairo_surface_create_for_rectangle", libcairo.}
+
