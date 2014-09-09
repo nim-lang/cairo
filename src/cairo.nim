@@ -1,7 +1,7 @@
 #* cairo - a vector graphics library with display and print output
 # *
-# * Copyright © 2002 University of Southern California
-# * Copyright © 2005 Red Hat, Inc.
+# * Copyright Â© 2002 University of Southern California
+# * Copyright Â© 2005 Red Hat, Inc.
 # *
 # * This library is free software; you can redistribute it and/or
 # * modify it either under the terms of the GNU Lesser General Public
@@ -44,7 +44,7 @@
 #  - Organized the functions by group and ordered exactly as the c header
 #  - Cleared parameter list syntax according to pascal standard
 #
-#  By Luiz Américo Pereira Câmara
+#  By Luiz AmÃ©rico Pereira CÃ¢mara
 #  October 2007
 #
 
@@ -155,9 +155,9 @@ type
   PPath* = ptr TPath
   PRectangle* = ptr TRectangle
   PRectangleList* = ptr TRectangleList
-  TDestroyFunc* = proc (data: Pointer){.cdecl.}
-  TWriteFunc* = proc (closure: Pointer, data: PByte, len: int32): TStatus{.cdecl.}
-  TReadFunc* = proc (closure: Pointer, data: PByte, len: int32): TStatus{.cdecl.}
+  TDestroyFunc* = proc (data: pointer){.cdecl.}
+  TWriteFunc* = proc (closure: pointer, data: PByte, len: int32): TStatus{.cdecl.}
+  TReadFunc* = proc (closure: pointer, data: PByte, len: int32): TStatus{.cdecl.}
   TContext*{.final.} = object        #OPAQUE
   TSurface*{.final.} = object  #OPAQUE
   TPattern*{.final.} = object  #OPAQUE
@@ -229,7 +229,7 @@ proc get_reference_count*(cr: PContext): int32{.cdecl,
     importc: "cairo_get_reference_count", libcairo.}
 proc get_user_data*(cr: PContext, key: PUserDataKey): pointer{.cdecl, 
     importc: "cairo_get_user_data", libcairo.}
-proc set_user_data*(cr: PContext, key: PUserDataKey, user_data: Pointer, 
+proc set_user_data*(cr: PContext, key: PUserDataKey, user_data: pointer, 
                     destroy: TDestroyFunc): TStatus{.cdecl, 
     importc: "cairo_set_user_data", libcairo.}
 proc save*(cr: PContext){.cdecl, importc: "cairo_save", libcairo.}
@@ -449,10 +449,10 @@ proc status*(scaled_font: PScaledFont): TStatus{.cdecl,
     importc: "cairo_scaled_font_status", libcairo.}
 proc get_type*(scaled_font: PScaledFont): TFontType{.cdecl, 
     importc: "cairo_scaled_font_get_type", libcairo.}
-proc get_user_data*(scaled_font: PScaledFont, key: PUserDataKey): Pointer{.
+proc get_user_data*(scaled_font: PScaledFont, key: PUserDataKey): pointer{.
     cdecl, importc: "cairo_scaled_font_get_user_data", libcairo.}
 proc set_user_data*(scaled_font: PScaledFont, key: PUserDataKey, 
-                    user_data: Pointer, destroy: TDestroyFunc): TStatus{.
+                    user_data: pointer, destroy: TDestroyFunc): TStatus{.
     cdecl, importc: "cairo_scaled_font_set_user_data", libcairo.}
 proc extents*(scaled_font: PScaledFont, extents: PFontExtents){.
     cdecl, importc: "cairo_scaled_font_extents", libcairo.}
@@ -598,10 +598,10 @@ proc get_reference_count*(pattern: PPattern): int32{.cdecl,
     importc: "cairo_pattern_get_reference_count", libcairo.}
 proc status*(pattern: PPattern): TStatus{.cdecl, 
     importc: "cairo_pattern_status", libcairo.}
-proc get_user_data*(pattern: PPattern, key: PUserDataKey): Pointer{.
+proc get_user_data*(pattern: PPattern, key: PUserDataKey): pointer{.
     cdecl, importc: "cairo_pattern_get_user_data", libcairo.}
 proc set_user_data*(pattern: PPattern, key: PUserDataKey, 
-                    user_data: Pointer, destroy: TDestroyFunc): TStatus{.
+                    user_data: pointer, destroy: TDestroyFunc): TStatus{.
     cdecl, importc: "cairo_pattern_set_user_data", libcairo.}
 proc get_type*(pattern: PPattern): TPatternType{.cdecl, 
     importc: "cairo_pattern_get_type", libcairo.}
@@ -668,7 +668,7 @@ proc transform_point*(matrix: PMatrix, x, y: var float64){.cdecl,
 proc pdf_surface_create*(filename: cstring, 
                          width_in_points, height_in_points: float64): PSurface{.
     cdecl, importc: "cairo_pdf_surface_create", libcairo.}
-proc pdf_surface_create_for_stream*(write_func: TWriteFunc, closure: Pointer, 
+proc pdf_surface_create_for_stream*(write_func: TWriteFunc, closure: pointer, 
                                     width_in_points, height_in_points: float64): PSurface{.
     cdecl, importc: "cairo_pdf_surface_create_for_stream", libcairo.}
 proc pdf_surface_set_size*(surface: PSurface, 
@@ -678,7 +678,7 @@ proc pdf_surface_set_size*(surface: PSurface,
 proc ps_surface_create*(filename: cstring, 
                         width_in_points, height_in_points: float64): PSurface{.
     cdecl, importc: "cairo_ps_surface_create", libcairo.}
-proc ps_surface_create_for_stream*(write_func: TWriteFunc, closure: Pointer, 
+proc ps_surface_create_for_stream*(write_func: TWriteFunc, closure: pointer, 
                                    width_in_points, height_in_points: float64): PSurface{.
     cdecl, importc: "cairo_ps_surface_create_for_stream", libcairo.}
 proc ps_surface_set_size*(surface: PSurface, 
@@ -694,7 +694,7 @@ proc ps_surface_dsc_begin_page_setup*(surface: PSurface){.cdecl,
 proc svg_surface_create*(filename: cstring, 
                          width_in_points, height_in_points: float64): PSurface{.
     cdecl, importc: "cairo_svg_surface_create", libcairo.}
-proc svg_surface_create_for_stream*(write_func: TWriteFunc, closure: Pointer, 
+proc svg_surface_create_for_stream*(write_func: TWriteFunc, closure: pointer, 
                                     width_in_points, height_in_points: float64): PSurface{.
     cdecl, importc: "cairo_svg_surface_create_for_stream", libcairo.}
 proc svg_surface_restrict_to_version*(surface: PSurface, version: TSvgVersion){.
