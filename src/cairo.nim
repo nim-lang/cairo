@@ -165,54 +165,54 @@ type
   TFontFace*{.final.} = object  #OPAQUE
   TFontOptions*{.final.} = object  #OPAQUE
   TMatrix*{.final.} = object 
-    xx: float64
-    yx: float64
-    xy: float64
-    yy: float64
-    x0: float64
-    y0: float64
+    xx*: float64
+    yx*: float64
+    xy*: float64
+    yy*: float64
+    x0*: float64
+    y0*: float64
 
   TUserDataKey*{.final.} = object 
-    unused: int32
+    unused*: int32
 
   TGlyph*{.final.} = object 
-    index: int32
-    x: float64
-    y: float64
+    index*: int32
+    x*: float64
+    y*: float64
 
   TTextExtents*{.final.} = object 
-    x_bearing: float64
-    y_bearing: float64
-    width: float64
-    height: float64
-    x_advance: float64
-    y_advance: float64
+    x_bearing*: float64
+    y_bearing*: float64
+    width*: float64
+    height*: float64
+    x_advance*: float64
+    y_advance*: float64
 
   TFontExtents*{.final.} = object 
-    ascent: float64
-    descent: float64
-    height: float64
-    max_x_advance: float64
-    max_y_advance: float64
+    ascent*: float64
+    descent*: float64
+    height*: float64
+    max_x_advance*: float64
+    max_y_advance*: float64
 
   TPathData*{.final.} = object  #* _type : TCairoPathDataType;
                                 #       length : LongInt;
                                 #    end
-    x: float64
-    y: float64
+    x*: float64
+    y*: float64
 
   TPath*{.final.} = object 
-    status: TStatus
-    data: PPathData
-    num_data: int32
+    status*: TStatus
+    data*: PPathData
+    num_data*: int32
 
   TRectangle*{.final.} = object 
-    x, y, width, height: float64
+    x*, y*, width*, height*: float64
 
   TRectangleList*{.final.} = object 
-    status: TStatus
-    rectangles: PRectangle
-    num_rectangles: int32
+    status*: TStatus
+    rectangles*: PRectangle
+    num_rectangles*: int32
 
 
 proc version*(): int32{.cdecl, importc: "cairo_version", libcairo.}
