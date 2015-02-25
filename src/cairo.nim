@@ -721,14 +721,14 @@ proc checkStatus*(s: cairo.TStatus) {.noinline.} =
   ## if ``s != StatusSuccess`` the error is turned into an appropirate Nimrod
   ## exception and raised.
   case s
-  of StatusSuccess: nil
+  of StatusSuccess: discard
   of StatusNoMemory: 
-    raise newException(EOutOfMemory, $statusToString(s))
+    raise newException(OutOfMemError, $statusToString(s))
   of STATUS_READ_ERROR, STATUS_WRITE_ERROR, STATUS_FILE_NOT_FOUND, 
      STATUS_TEMP_FILE_ERROR:
-    raise newException(EIO, $statusToString(s))
+    raise newException(IOError, $statusToString(s))
   else:
-    raise newException(EAssertionFailed, $statusToString(s))
+    raise newException(AssertionError, $statusToString(s))
 
 
 # new since 1.10

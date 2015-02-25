@@ -1,6 +1,6 @@
 # included by cairo bindings
 
-when defined(use_pkg_config) or defined(use_pkg_config_static):
+when declared(use_pkg_config) or declared(use_pkg_config_static):
     {.pragma: libcairo, cdecl.}
     when defined(use_pkg_config_static):
         {.passl: gorge("pkg-config cairo --libs --static").}
