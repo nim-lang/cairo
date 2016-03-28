@@ -10,7 +10,7 @@ else:
     when defined(windows): 
       const LIB_CAIRO* = "libcairo-2.dll"
     elif defined(macosx):
-      const LIB_CAIRO* = "libcairo.dylib"
+      const LIB_CAIRO* = "libcairo(|.2).dylib"
     else: 
       const LIB_CAIRO* = "libcairo.so(|.2)"
     {.pragma: libcairo, cdecl, dynlib: LIB_CAIRO.}
