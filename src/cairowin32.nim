@@ -1,6 +1,6 @@
 #
 # Translation of cairo-win32.h version 1.4
-# by Luiz Américo Pereira Câmara 2007
+# by Luiz AmÃ©rico Pereira CÃ¢mara 2007
 #
 
 import 
@@ -17,7 +17,7 @@ proc win32_surface_get_dc*(surface: PSurface): HDC{.cdecl,
     importc: "cairo_win32_surface_get_dc", dynlib: LIB_CAIRO.}
 proc win32_surface_get_image*(surface: PSurface): PSurface{.cdecl, 
     importc: "cairo_win32_surface_get_image", dynlib: LIB_CAIRO.}
-proc win32_font_face_create_for_logfontw*(logfont: pLOGFONTW): PFontFace{.cdecl, 
+proc win32_font_face_create_for_logfontw*(logfont: PLOGFONTW): PFontFace{.cdecl, 
     importc: "cairo_win32_font_face_create_for_logfontw", dynlib: LIB_CAIRO.}
 proc win32_font_face_create_for_hfont*(font: HFONT): PFontFace{.cdecl, 
     importc: "cairo_win32_font_face_create_for_hfont", dynlib: LIB_CAIRO.}
