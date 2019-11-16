@@ -1,7 +1,7 @@
 #
 # Translation of cairo-xlib.h version 1.4
 # by Jeffrey Pohlmeyer
-# updated to version 1.4 by Luiz Am�rico Pereira C�mara 2007
+# updated to version 1.4 by Luiz Américo Pereira Câmara 2007
 #
 
 import
