@@ -44,7 +44,7 @@
 #
 # By Luiz Américo Pereira Câmara
 # October 2007
-
+#
 
 include "cairo_pragma.nim"
 
@@ -82,7 +82,6 @@ type
     STATUS_INVALID_CLUSTERS,
     STATUS_INVALID_SLANT,
     STATUS_INVALID_WEIGHT
-
 
   Operator* = enum
     OPERATOR_CLEAR, OPERATOR_SOURCE, OPERATOR_OVER, OPERATOR_IN, OPERATOR_OUT,
@@ -179,9 +178,7 @@ type
     maxXAdvance* {.importc: "max_x_advance".}: float64
     maxYAadvance* {.importc: "max_y_advance".}: float64
 
-  PathData*{.final.} = object  #* _type : TCairoPathDataType;
-                                #       length : LongInt;
-                                #    end
+  PathData*{.final.} = object
     x*: float64
     y*: float64
 
@@ -255,7 +252,7 @@ proc closePath*(cr: ptr Context) {.importc: "cairo_close_path".}
 proc paint*(cr: ptr Context) {.importc: "cairo_paint".}
 proc paintWithAlpha*(cr: ptr Context, alpha: float64) {.importc: "cairo_paint_with_alpha".}
 proc mask*(cr: ptr Context, pattern: ptr Pattern) {.importc: "cairo_mask".}
-proc mask*(cr: ptr Context, surface: ptr Surface, surface_x, surface_y: float64){. cdecl, importc: "cairo_mask_surface".}
+proc mask*(cr: ptr Context, surface: ptr Surface, surface_x, surface_y: float64) {.importc: "cairo_mask_surface".}
 proc stroke*(cr: ptr Context) {.importc: "cairo_stroke".}
 proc strokePreserve*(cr: ptr Context) {.importc: "cairo_stroke_preserve".}
 proc fill*(cr: ptr Context) {.importc: "cairo_fill".}
@@ -283,11 +280,11 @@ proc status*(options: ptr FontOptions): Status {.importc: "cairo_font_options_st
 proc merge*(options, other: ptr FontOptions) {.importc: "cairo_font_options_merge".}
 proc equal*(options, other: ptr FontOptions): Bool {.importc: "cairo_font_options_equal".}
 proc hash*(options: ptr FontOptions): int32 {.importc: "cairo_font_options_hash".}
-proc setAntialias*(options: ptr FontOptions, antialias: Antialias){. cdecl, importc: "cairo_font_options_set_antialias".}
+proc setAntialias*(options: ptr FontOptions, antialias: Antialias) {.importc: "cairo_font_options_set_antialias".}
 proc getAntialias*(options: ptr FontOptions): Antialias {.importc: "cairo_font_options_get_antialias".}
 proc setSubpixelOrder*(options: ptr FontOptions, subpixel_order: SubpixelOrder) {.importc: "cairo_font_options_set_subpixel_order".}
-proc getSubpixelOrder*(options: ptr FontOptions): SubpixelOrder{. cdecl, importc: "cairo_font_options_get_subpixel_order".}
-proc setHintStyle*(options: ptr FontOptions, hint_style: HintStyle){. cdecl, importc: "cairo_font_options_set_hint_style".}
+proc getSubpixelOrder*(options: ptr FontOptions): SubpixelOrder{.importc: "cairo_font_options_get_subpixel_order".}
+proc setHintStyle*(options: ptr FontOptions, hint_style: HintStyle) {.importc: "cairo_font_options_set_hint_style".}
 proc getHintStyle*(options: ptr FontOptions): HintStyle {.importc: "cairo_font_options_get_hint_style".}
 proc setHintMetrics*(options: ptr FontOptions, hint_metrics: HintMetrics) {.importc: "cairo_font_options_set_hint_metrics".}
 proc getHintMetrics*(options: ptr FontOptions): HintMetrics {.importc: "cairo_font_options_get_hint_metrics".}
@@ -316,22 +313,22 @@ proc destroy*(font_face: ptr FontFace) {.importc: "cairo_font_face_destroy".}
 proc getReferenceCount*(font_face: ptr FontFace): int32 {.importc: "cairo_font_face_get_reference_count".}
 proc status*(font_face: ptr FontFace): Status {.importc: "cairo_font_face_status".}
 proc getType*(font_face: ptr FontFace): FontType {.importc: "cairo_font_face_get_type".}
-proc getUserData*(font_face: ptr FontFace, key: ptr UserDataKey): pointer{. cdecl, importc: "cairo_font_face_get_user_data".}
-proc setUserData*(font_face: ptr FontFace, key: ptr UserDataKey, user_data: pointer, destroy: DestroyFunc): Status{. cdecl, importc: "cairo_font_face_set_user_data".}
+proc getUserData*(font_face: ptr FontFace, key: ptr UserDataKey): pointer{.importc: "cairo_font_face_get_user_data".}
+proc setUserData*(font_face: ptr FontFace, key: ptr UserDataKey, user_data: pointer, destroy: DestroyFunc): Status {.importc: "cairo_font_face_set_user_data".}
 # Portable interface to general font features
-proc scaledFontCreate*(font_face: ptr FontFace, font_matrix: ptr Matrix, ctm: ptr Matrix, options: ptr FontOptions): ptr ScaledFont{. cdecl, importc: "cairo_scaled_font_create".}
+proc scaledFontCreate*(font_face: ptr FontFace, font_matrix: ptr Matrix, ctm: ptr Matrix, options: ptr FontOptions): ptr ScaledFont{.importc: "cairo_scaled_font_create".}
 proc reference*(scaled_font: ptr ScaledFont): ptr ScaledFont {.importc: "cairo_scaled_font_reference".}
 proc destroy*(scaled_font: ptr ScaledFont) {.importc: "cairo_scaled_font_destroy".}
 proc getReferenceCount*(scaled_font: ptr ScaledFont): int32 {.importc: "cairo_scaled_font_get_reference_count".}
 proc status*(scaled_font: ptr ScaledFont): Status {.importc: "cairo_scaled_font_status".}
 proc getType*(scaled_font: ptr ScaledFont): FontType {.importc: "cairo_scaled_font_get_type".}
-proc getUserData*(scaled_font: ptr ScaledFont, key: ptr UserDataKey): pointer{. cdecl, importc: "cairo_scaled_font_get_user_data".}
-proc setUserData*(scaled_font: ptr ScaledFont, key: ptr UserDataKey, user_data: pointer, destroy: DestroyFunc): Status{. cdecl, importc: "cairo_scaled_font_set_user_data".}
-proc extents*(scaled_font: ptr ScaledFont, extents: ptr FontExtents){. cdecl, importc: "cairo_scaled_font_extents".}
+proc getUserData*(scaled_font: ptr ScaledFont, key: ptr UserDataKey): pointer{.importc: "cairo_scaled_font_get_user_data".}
+proc setUserData*(scaled_font: ptr ScaledFont, key: ptr UserDataKey, user_data: pointer, destroy: DestroyFunc): Status {.importc: "cairo_scaled_font_set_user_data".}
+proc extents*(scaled_font: ptr ScaledFont, extents: ptr FontExtents) {.importc: "cairo_scaled_font_extents".}
 proc textExtents*(scaled_font: ptr ScaledFont, utf8: cstring, extents: ptr TextExtents) {.importc: "cairo_scaled_font_text_extents".}
-proc glyphExtents*(scaled_font: ptr ScaledFont, glyphs: ptr Glyph, num_glyphs: int32, extents: ptr TextExtents){. cdecl, importc: "cairo_scaled_font_glyph_extents".}
+proc glyphExtents*(scaled_font: ptr ScaledFont, glyphs: ptr Glyph, num_glyphs: int32, extents: ptr TextExtents) {.importc: "cairo_scaled_font_glyph_extents".}
 proc getFontFace*(scaled_font: ptr ScaledFont): ptr FontFace {.importc: "cairo_scaled_font_get_font_face".}
-proc getFontMatrix*(scaled_font: ptr ScaledFont, font_matrix: ptr Matrix){. cdecl, importc: "cairo_scaled_font_get_font_matrix".}
+proc getFontMatrix*(scaled_font: ptr ScaledFont, font_matrix: ptr Matrix) {.importc: "cairo_scaled_font_get_font_matrix".}
 proc getCtm*(scaled_font: ptr ScaledFont, ctm: ptr Matrix) {.importc: "cairo_scaled_font_get_ctm".}
 proc getFontOptions*(scaled_font: ptr ScaledFont, options: ptr FontOptions) {.importc: "cairo_scaled_font_get_font_options".}
 # Query functions
@@ -366,20 +363,20 @@ proc getReferenceCount*(surface: ptr Surface): int32 {.importc: "cairo_surface_g
 proc status*(surface: ptr Surface): Status {.importc: "cairo_surface_status".}
 proc getType*(surface: ptr Surface): SurfaceType {.importc: "cairo_surface_get_type".}
 proc getContent*(surface: ptr Surface): Content {.importc: "cairo_surface_get_content".}
-proc writeToPng*(surface: ptr Surface, filename: cstring): Status{. cdecl, importc: "cairo_surface_write_to_png".}
+proc writeToPng*(surface: ptr Surface, filename: cstring): Status {.importc: "cairo_surface_write_to_png".}
 proc writeToPng*(surface: ptr Surface, write_func: WriteFunc, closure: pointer): Status {.importc: "cairo_surface_write_to_png_stream".}
-proc getUserData*(surface: ptr Surface, key: ptr UserDataKey): pointer{. cdecl, importc: "cairo_surface_get_user_data".}
-proc setUserData*(surface: ptr Surface, key: ptr UserDataKey, user_data: pointer, destroy: DestroyFunc): Status{. cdecl, importc: "cairo_surface_set_user_data".}
+proc getUserData*(surface: ptr Surface, key: ptr UserDataKey): pointer{.importc: "cairo_surface_get_user_data".}
+proc setUserData*(surface: ptr Surface, key: ptr UserDataKey, user_data: pointer, destroy: DestroyFunc): Status {.importc: "cairo_surface_set_user_data".}
 proc getFontOptions*(surface: ptr Surface, options: ptr FontOptions) {.importc: "cairo_surface_get_font_options".}
 proc flush*(surface: ptr Surface) {.importc: "cairo_surface_flush".}
 proc markDirty*(surface: ptr Surface) {.importc: "cairo_surface_mark_dirty".}
-proc markDirtyRectangle*(surface: ptr Surface, x, y, width, height: int32){. cdecl, importc: "cairo_surface_mark_dirty_rectangle".}
-proc setDeviceOffset*(surface: ptr Surface, x_offset, y_offset: float64){. cdecl, importc: "cairo_surface_set_device_offset".}
+proc markDirtyRectangle*(surface: ptr Surface, x, y, width, height: int32) {.importc: "cairo_surface_mark_dirty_rectangle".}
+proc setDeviceOffset*(surface: ptr Surface, x_offset, y_offset: float64) {.importc: "cairo_surface_set_device_offset".}
 proc getDeviceOffset*(surface: ptr Surface, x_offset, y_offset: var float64) {.importc: "cairo_surface_get_device_offset".}
 proc setFallbackResolution*(surface: ptr Surface, x_pixels_per_inch, y_pixels_per_inch: float64) {.importc: "cairo_surface_set_fallback_resolution".}
 # Image-surface functions
-proc imageSurfaceCreate*(format: Format, width, height: int32): ptr Surface{. cdecl, importc: "cairo_image_surface_create".}
-proc imageSurfaceCreate*(data: cstring, format: Format, width, height, stride: int32): ptr Surface{. cdecl, importc: "cairo_image_surface_create_for_data".}
+proc imageSurfaceCreate*(format: Format, width, height: int32): ptr Surface{.importc: "cairo_image_surface_create".}
+proc imageSurfaceCreate*(data: cstring, format: Format, width, height, stride: int32): ptr Surface{.importc: "cairo_image_surface_create_for_data".}
 proc getData*(surface: ptr Surface): cstring {.importc: "cairo_image_surface_get_data".}
 proc getFormat*(surface: ptr Surface): Format {.importc: "cairo_image_surface_get_format".}
 proc getWidth*(surface: ptr Surface): int32 {.importc: "cairo_image_surface_get_width".}
@@ -392,28 +389,28 @@ proc patternCreateRgb*(red, green, blue: float64): ptr Pattern {.importc: "cairo
 proc patternCreateRgba*(red, green, blue, alpha: float64): ptr Pattern {.importc: "cairo_pattern_create_rgba".}
 proc patternCreateForSurface*(surface: ptr Surface): ptr Pattern {.importc: "cairo_pattern_create_for_surface".}
 proc patternCreateLinear*(x0, y0, x1, y1: float64): ptr Pattern {.importc: "cairo_pattern_create_linear".}
-proc patternCreateRadial*(cx0, cy0, radius0, cx1, cy1, radius1: float64): ptr Pattern{. cdecl, importc: "cairo_pattern_create_radial".}
+proc patternCreateRadial*(cx0, cy0, radius0, cx1, cy1, radius1: float64): ptr Pattern{.importc: "cairo_pattern_create_radial".}
 proc reference*(pattern: ptr Pattern): ptr Pattern {.importc: "cairo_pattern_reference".}
 proc destroy*(pattern: ptr Pattern) {.importc: "cairo_pattern_destroy".}
 proc getReferenceCount*(pattern: ptr Pattern): int32 {.importc: "cairo_pattern_get_reference_count".}
 proc status*(pattern: ptr Pattern): Status {.importc: "cairo_pattern_status".}
-proc getUserData*(pattern: ptr Pattern, key: ptr UserDataKey): pointer{. cdecl, importc: "cairo_pattern_get_user_data".}
-proc setUserData*(pattern: ptr Pattern, key: ptr UserDataKey, user_data: pointer, destroy: DestroyFunc): Status{. cdecl, importc: "cairo_pattern_set_user_data".}
+proc getUserData*(pattern: ptr Pattern, key: ptr UserDataKey): pointer{.importc: "cairo_pattern_get_user_data".}
+proc setUserData*(pattern: ptr Pattern, key: ptr UserDataKey, user_data: pointer, destroy: DestroyFunc): Status {.importc: "cairo_pattern_set_user_data".}
 proc getType*(pattern: ptr Pattern): PatternType {.importc: "cairo_pattern_get_type".}
 proc addColorStopRgb*(pattern: ptr Pattern, offset, red, green, blue: float64) {.importc: "cairo_pattern_add_color_stop_rgb".}
-proc addColorStopRgba*(pattern: ptr Pattern, offset, red, green, blue, alpha: float64){. cdecl, importc: "cairo_pattern_add_color_stop_rgba".}
+proc addColorStopRgba*(pattern: ptr Pattern, offset, red, green, blue, alpha: float64) {.importc: "cairo_pattern_add_color_stop_rgba".}
 proc setMatrix*(pattern: ptr Pattern, matrix: ptr Matrix) {.importc: "cairo_pattern_set_matrix".}
 proc getMatrix*(pattern: ptr Pattern, matrix: ptr Matrix) {.importc: "cairo_pattern_get_matrix".}
 proc setExtend*(pattern: ptr Pattern, extend: Extend) {.importc: "cairo_pattern_set_extend".}
 proc getExtend*(pattern: ptr Pattern): Extend {.importc: "cairo_pattern_get_extend".}
 proc setFilter*(pattern: ptr Pattern, filter: Filter) {.importc: "cairo_pattern_set_filter".}
 proc getFilter*(pattern: ptr Pattern): Filter {.importc: "cairo_pattern_get_filter".}
-proc getRgba*(pattern: ptr Pattern, red, green, blue, alpha: var float64): Status{. cdecl, importc: "cairo_pattern_get_rgba".}
-proc getSurface*(pattern: ptr Pattern, surface: ptr ptr Surface): Status{. cdecl, importc: "cairo_pattern_get_surface".}
-proc getColorStopRgba*(pattern: ptr Pattern, index: int32, offset, red, green, blue, alpha: var float64): Status{. cdecl, importc: "cairo_pattern_get_color_stop_rgba".}
-proc getColorStopCount*(pattern: ptr Pattern, count: var int32): Status{. cdecl, importc: "cairo_pattern_get_color_stop_count".}
-proc getLinearPoints*(pattern: ptr Pattern, x0, y0, x1, y1: var float64): Status{. cdecl, importc: "cairo_pattern_get_linear_points".}
-proc getRadialCircles*(pattern: ptr Pattern, x0, y0, r0, x1, y1, r1: var float64): Status{. cdecl, importc: "cairo_pattern_get_radial_circles".}
+proc getRgba*(pattern: ptr Pattern, red, green, blue, alpha: var float64): Status {.importc: "cairo_pattern_get_rgba".}
+proc getSurface*(pattern: ptr Pattern, surface: ptr ptr Surface): Status {.importc: "cairo_pattern_get_surface".}
+proc getColorStopRgba*(pattern: ptr Pattern, index: int32, offset, red, green, blue, alpha: var float64): Status {.importc: "cairo_pattern_get_color_stop_rgba".}
+proc getColorStopCount*(pattern: ptr Pattern, count: var int32): Status {.importc: "cairo_pattern_get_color_stop_count".}
+proc getLinearPoints*(pattern: ptr Pattern, x0, y0, x1, y1: var float64): Status {.importc: "cairo_pattern_get_linear_points".}
+proc getRadialCircles*(pattern: ptr Pattern, x0, y0, r0, x1, y1, r1: var float64): Status {.importc: "cairo_pattern_get_radial_circles".}
 # Matrix functions
 proc init*(matrix: ptr Matrix, xx, yx, xy, yy, x0, y0: float64) {.importc: "cairo_matrix_init".}
 proc initIdentity*(matrix: ptr Matrix) {.importc: "cairo_matrix_init_identity".}
@@ -428,22 +425,23 @@ proc multiply*(result, a, b: ptr Matrix) {.importc: "cairo_matrix_multiply".}
 proc transformDistance*(matrix: ptr Matrix, dx, dy: var float64) {.importc: "cairo_matrix_transform_distance".}
 proc transformPoint*(matrix: ptr Matrix, x, y: var float64) {.importc: "cairo_matrix_transform_point".}
 # PDF functions
-proc pdfSurfaceCreate*(filename: cstring, width_in_points, height_in_points: float64): ptr Surface{. cdecl, importc: "cairo_pdf_surface_create".}
-proc pdfSurfaceCreateForStream*(write_func: WriteFunc, closure: pointer, width_in_points, height_in_points: float64): ptr Surface{. cdecl, importc: "cairo_pdf_surface_create_for_stream".}
+proc pdfSurfaceCreate*(filename: cstring, width_in_points, height_in_points: float64): ptr Surface{.importc: "cairo_pdf_surface_create".}
+proc pdfSurfaceCreateForStream*(write_func: WriteFunc, closure: pointer, width_in_points, height_in_points: float64): ptr Surface{.importc: "cairo_pdf_surface_create_for_stream".}
 proc pdfSurfaceSetSize*(surface: ptr Surface, width_in_points, height_in_points: float64) {.importc: "cairo_pdf_surface_set_size".}
 # PS functions
-proc psSurfaceCreate*(filename: cstring, width_in_points, height_in_points: float64): ptr Surface{. cdecl, importc: "cairo_ps_surface_create".}
-proc psSurfaceCreateForStream*(write_func: WriteFunc, closure: pointer, width_in_points, height_in_points: float64): ptr Surface{. cdecl, importc: "cairo_ps_surface_create_for_stream".}
+proc psSurfaceCreate*(filename: cstring, width_in_points, height_in_points: float64): ptr Surface{.importc: "cairo_ps_surface_create".}
+proc psSurfaceCreateForStream*(write_func: WriteFunc, closure: pointer, width_in_points, height_in_points: float64): ptr Surface{.importc: "cairo_ps_surface_create_for_stream".}
 proc psSurfaceSetSize*(surface: ptr Surface, width_in_points, height_in_points: float64) {.importc: "cairo_ps_surface_set_size".}
 proc psSurfaceDscComment*(surface: ptr Surface, comment: cstring) {.importc: "cairo_ps_surface_dsc_comment".}
 proc psSurfaceDscBeginSetup*(surface: ptr Surface) {.importc: "cairo_ps_surface_dsc_begin_setup".}
 proc psSurfaceDscBeginPageSetup*(surface: ptr Surface) {.importc: "cairo_ps_surface_dsc_begin_page_setup".}
 # SVG functions
-proc svgSurfaceCreate*(filename: cstring, width_in_points, height_in_points: float64): ptr Surface{. cdecl, importc: "cairo_svg_surface_create".}
-proc svgSurfaceCreateForStream*(write_func: WriteFunc, closure: pointer, width_in_points, height_in_points: float64): ptr Surface{. cdecl, importc: "cairo_svg_surface_create_for_stream".}
-proc svgSurfaceRestrictToVersion*(surface: ptr Surface, version: SvgVersion){. cdecl, importc: "cairo_svg_surface_restrict_to_version".}
+proc svgSurfaceCreate*(filename: cstring, width_in_points, height_in_points: float64): ptr Surface{.importc: "cairo_svg_surface_create".}
+proc svgSurfaceCreateForStream*(write_func: WriteFunc, closure: pointer, width_in_points, height_in_points: float64): ptr Surface{.importc: "cairo_svg_surface_create_for_stream".}
+proc svgSurfaceRestrictToVersion*(surface: ptr Surface, version: SvgVersion) {.importc: "cairo_svg_surface_restrict_to_version".}
   #todo: see how translate this
-  #procedure cairo_svg_get_versions(TCairoSvgVersion const **versions, # int *num_versions); proc svgVersionToString*(version: SvgVersion): cstring {.importc: "cairo_svg_version_to_string".}
+  #procedure cairo_svg_get_versions(TCairoSvgVersion const **versions, # int *num_versions);
+proc svgVersionToString*(version: SvgVersion): cstring {.importc: "cairo_svg_version_to_string".}
 # Functions to be used while debugging (not intended for use in production code)
 proc debugResetStaticData*() {.importc: "cairo_debug_reset_static_data".}
 
