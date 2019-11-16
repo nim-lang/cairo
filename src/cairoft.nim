@@ -24,13 +24,13 @@ type
   FcPattern* = Pointer
   PFcPattern* = ptr FcPattern
 
-proc ft_font_face_create_for_pattern*(pattern: PFcPattern): PFontFace{.libcairo,
+proc ftFontFaceCreateForPattern*(pattern: PFcPattern): PFontFace{.libcairo,
     importc: "cairo_ft_font_face_create_for_pattern".}
-proc ft_font_options_substitute*(options: PFontOptions, pattern: PFcPattern){.
+proc ftFontOptionsSubstitute*(options: PFontOptions, pattern: PFcPattern){.
     libcairo, importc: "cairo_ft_font_options_substitute".}
-proc ft_font_face_create_for_ft_face*(face: TFT_Face, load_flags: int32): PFontFace{.libcairo,
+proc ftFontFaceCreateForFtFace*(face: TFT_Face, load_flags: int32): PFontFace{.libcairo,
     importc: "cairo_ft_font_face_create_for_ft_face".}
-proc ft_scaled_font_lock_face*(scaled_font: PScaledFont): TFT_Face{.libcairo,
+proc ftScaledFontLockFace*(scaled_font: PScaledFont): TFT_Face{.libcairo,
     importc: "cairo_ft_scaled_font_lock_face".}
-proc ft_scaled_font_unlock_face*(scaled_font: PScaledFont){.libcairo,
+proc ftScaledFontUnlockFace*(scaled_font: PScaledFont){.libcairo,
     importc: "cairo_ft_scaled_font_unlock_face".}
