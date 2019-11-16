@@ -221,7 +221,7 @@ type
 
 
 proc version*(): int32{.cdecl, importc: "cairo_version", libcairo.}
-proc version_string*(): cstring{.cdecl, importc: "cairo_version_string", 
+proc versionString*(): cstring{.cdecl, importc: "cairo_version_string", 
                                  libcairo.}
   #Helper function to retrieve decoded version
 proc version*(major, minor, micro: var int32)
@@ -230,48 +230,48 @@ proc create*(target: PSurface): PContext{.cdecl, importc: "cairo_create",
                                    libcairo.}
 proc reference*(cr: PContext): PContext{.cdecl, importc: "cairo_reference", libcairo.}
 proc destroy*(cr: PContext){.cdecl, importc: "cairo_destroy", libcairo.}
-proc get_reference_count*(cr: PContext): int32{.cdecl, 
+proc getReferenceCount*(cr: PContext): int32{.cdecl, 
     importc: "cairo_get_reference_count", libcairo.}
-proc get_user_data*(cr: PContext, key: PUserDataKey): pointer{.cdecl, 
+proc getUserData*(cr: PContext, key: PUserDataKey): pointer{.cdecl, 
     importc: "cairo_get_user_data", libcairo.}
-proc set_user_data*(cr: PContext, key: PUserDataKey, user_data: pointer, 
+proc setUserData*(cr: PContext, key: PUserDataKey, user_data: pointer, 
                     destroy: TDestroyFunc): TStatus{.cdecl, 
     importc: "cairo_set_user_data", libcairo.}
 proc save*(cr: PContext){.cdecl, importc: "cairo_save", libcairo.}
 proc restore*(cr: PContext){.cdecl, importc: "cairo_restore", libcairo.}
-proc push_group*(cr: PContext){.cdecl, importc: "cairo_push_group", libcairo.}
-proc push_group_with_content*(cr: PContext, content: TContent){.cdecl, 
+proc pushGroup*(cr: PContext){.cdecl, importc: "cairo_push_group", libcairo.}
+proc pushGroupWithContent*(cr: PContext, content: TContent){.cdecl, 
     importc: "cairo_push_group_with_content", libcairo.}
-proc pop_group*(cr: PContext): PPattern{.cdecl, importc: "cairo_pop_group", 
+proc popGroup*(cr: PContext): PPattern{.cdecl, importc: "cairo_pop_group", 
                                   libcairo.}
-proc pop_group_to_source*(cr: PContext){.cdecl, importc: "cairo_pop_group_to_source", 
+proc popGroupToSource*(cr: PContext){.cdecl, importc: "cairo_pop_group_to_source", 
                                   libcairo.}
   #* Modify state
-proc set_operator*(cr: PContext, op: TOperator){.cdecl, importc: "cairo_set_operator", 
+proc setOperator*(cr: PContext, op: TOperator){.cdecl, importc: "cairo_set_operator", 
     libcairo.}
-proc set_source*(cr: PContext, source: PPattern){.cdecl, importc: "cairo_set_source", 
+proc setSource*(cr: PContext, source: PPattern){.cdecl, importc: "cairo_set_source", 
     libcairo.}
-proc set_source_rgb*(cr: PContext, red, green, blue: float64){.cdecl, 
+proc setSourceRgb*(cr: PContext, red, green, blue: float64){.cdecl, 
     importc: "cairo_set_source_rgb", libcairo.}
-proc set_source_rgba*(cr: PContext, red, green, blue, alpha: float64){.cdecl, 
+proc setSourceRgba*(cr: PContext, red, green, blue, alpha: float64){.cdecl, 
     importc: "cairo_set_source_rgba", libcairo.}
-proc set_source*(cr: PContext, surface: PSurface, x, y: float64){.cdecl, 
+proc setSource*(cr: PContext, surface: PSurface, x, y: float64){.cdecl, 
     importc: "cairo_set_source_surface", libcairo.}
-proc set_tolerance*(cr: PContext, tolerance: float64){.cdecl, 
+proc setTolerance*(cr: PContext, tolerance: float64){.cdecl, 
     importc: "cairo_set_tolerance", libcairo.}
-proc set_antialias*(cr: PContext, antialias: TAntialias){.cdecl, 
+proc setAntialias*(cr: PContext, antialias: TAntialias){.cdecl, 
     importc: "cairo_set_antialias", libcairo.}
-proc set_fill_rule*(cr: PContext, fill_rule: TFillRule){.cdecl, 
+proc setFillRule*(cr: PContext, fill_rule: TFillRule){.cdecl, 
     importc: "cairo_set_fill_rule", libcairo.}
-proc set_line_width*(cr: PContext, width: float64){.cdecl, 
+proc setLineWidth*(cr: PContext, width: float64){.cdecl, 
     importc: "cairo_set_line_width", libcairo.}
-proc set_line_cap*(cr: PContext, line_cap: TLineCap){.cdecl, 
+proc setLineCap*(cr: PContext, line_cap: TLineCap){.cdecl, 
     importc: "cairo_set_line_cap", libcairo.}
-proc set_line_join*(cr: PContext, line_join: TLineJoin){.cdecl, 
+proc setLineJoin*(cr: PContext, line_join: TLineJoin){.cdecl, 
     importc: "cairo_set_line_join", libcairo.}
-proc set_dash*(cr: PContext, dashes: openarray[float64], offset: float64){.cdecl, 
+proc setDash*(cr: PContext, dashes: openarray[float64], offset: float64){.cdecl, 
     importc: "cairo_set_dash", libcairo.}
-proc set_miter_limit*(cr: PContext, limit: float64){.cdecl, 
+proc setMiterLimit*(cr: PContext, limit: float64){.cdecl, 
     importc: "cairo_set_miter_limit", libcairo.}
 proc translate*(cr: PContext, tx, ty: float64){.cdecl, importc: "cairo_translate", 
     libcairo.}
@@ -281,80 +281,80 @@ proc rotate*(cr: PContext, angle: float64){.cdecl, importc: "cairo_rotate",
                                      libcairo.}
 proc transform*(cr: PContext, matrix: PMatrix){.cdecl, importc: "cairo_transform", 
     libcairo.}
-proc set_matrix*(cr: PContext, matrix: PMatrix){.cdecl, importc: "cairo_set_matrix", 
+proc setMatrix*(cr: PContext, matrix: PMatrix){.cdecl, importc: "cairo_set_matrix", 
     libcairo.}
-proc identity_matrix*(cr: PContext){.cdecl, importc: "cairo_identity_matrix", 
+proc identityMatrix*(cr: PContext){.cdecl, importc: "cairo_identity_matrix", 
                               libcairo.}
-proc user_to_device*(cr: PContext, x, y: var float64){.cdecl, 
+proc userToDevice*(cr: PContext, x, y: var float64){.cdecl, 
     importc: "cairo_user_to_device", libcairo.}
-proc user_to_device_distance*(cr: PContext, dx, dy: var float64){.cdecl, 
+proc userToDeviceDistance*(cr: PContext, dx, dy: var float64){.cdecl, 
     importc: "cairo_user_to_device_distance", libcairo.}
-proc device_to_user*(cr: PContext, x, y: var float64){.cdecl, 
+proc deviceToUser*(cr: PContext, x, y: var float64){.cdecl, 
     importc: "cairo_device_to_user", libcairo.}
-proc device_to_user_distance*(cr: PContext, dx, dy: var float64){.cdecl, 
+proc deviceToUserDistance*(cr: PContext, dx, dy: var float64){.cdecl, 
     importc: "cairo_device_to_user_distance", libcairo.}
   #* Path creation functions
-proc new_path*(cr: PContext){.cdecl, importc: "cairo_new_path", libcairo.}
-proc move_to*(cr: PContext, x, y: float64){.cdecl, importc: "cairo_move_to", 
+proc newPath*(cr: PContext){.cdecl, importc: "cairo_new_path", libcairo.}
+proc moveTo*(cr: PContext, x, y: float64){.cdecl, importc: "cairo_move_to", 
                                      libcairo.}
-proc new_sub_path*(cr: PContext){.cdecl, importc: "cairo_new_sub_path", 
+proc newSubPath*(cr: PContext){.cdecl, importc: "cairo_new_sub_path", 
                            libcairo.}
-proc line_to*(cr: PContext, x, y: float64){.cdecl, importc: "cairo_line_to", 
+proc lineTo*(cr: PContext, x, y: float64){.cdecl, importc: "cairo_line_to", 
                                      libcairo.}
-proc curve_to*(cr: PContext, x1, y1, x2, y2, x3, y3: float64){.cdecl, 
+proc curveTo*(cr: PContext, x1, y1, x2, y2, x3, y3: float64){.cdecl, 
     importc: "cairo_curve_to", libcairo.}
 proc arc*(cr: PContext, xc, yc, radius, angle1, angle2: float64){.cdecl, 
     importc: "cairo_arc", libcairo.}
-proc arc_negative*(cr: PContext, xc, yc, radius, angle1, angle2: float64){.cdecl, 
+proc arcNegative*(cr: PContext, xc, yc, radius, angle1, angle2: float64){.cdecl, 
     importc: "cairo_arc_negative", libcairo.}
-proc rel_move_to*(cr: PContext, dx, dy: float64){.cdecl, importc: "cairo_rel_move_to", 
+proc relMoveTo*(cr: PContext, dx, dy: float64){.cdecl, importc: "cairo_rel_move_to", 
     libcairo.}
-proc rel_line_to*(cr: PContext, dx, dy: float64){.cdecl, importc: "cairo_rel_line_to", 
+proc relLineTo*(cr: PContext, dx, dy: float64){.cdecl, importc: "cairo_rel_line_to", 
     libcairo.}
-proc rel_curve_to*(cr: PContext, dx1, dy1, dx2, dy2, dx3, dy3: float64){.cdecl, 
+proc relCurveTo*(cr: PContext, dx1, dy1, dx2, dy2, dx3, dy3: float64){.cdecl, 
     importc: "cairo_rel_curve_to", libcairo.}
 proc rectangle*(cr: PContext, x, y, width, height: float64){.cdecl, 
     importc: "cairo_rectangle", libcairo.}
-proc close_path*(cr: PContext){.cdecl, importc: "cairo_close_path", libcairo.}
+proc closePath*(cr: PContext){.cdecl, importc: "cairo_close_path", libcairo.}
   #* Painting functions
 proc paint*(cr: PContext){.cdecl, importc: "cairo_paint", libcairo.}
-proc paint_with_alpha*(cr: PContext, alpha: float64){.cdecl, 
+proc paintWithAlpha*(cr: PContext, alpha: float64){.cdecl, 
     importc: "cairo_paint_with_alpha", libcairo.}
 proc mask*(cr: PContext, pattern: PPattern){.cdecl, importc: "cairo_mask", 
                                       libcairo.}
 proc mask*(cr: PContext, surface: PSurface, surface_x, surface_y: float64){.
     cdecl, importc: "cairo_mask_surface", libcairo.}
 proc stroke*(cr: PContext){.cdecl, importc: "cairo_stroke", libcairo.}
-proc stroke_preserve*(cr: PContext){.cdecl, importc: "cairo_stroke_preserve", 
+proc strokePreserve*(cr: PContext){.cdecl, importc: "cairo_stroke_preserve", 
                               libcairo.}
 proc fill*(cr: PContext){.cdecl, importc: "cairo_fill", libcairo.}
-proc fill_preserve*(cr: PContext){.cdecl, importc: "cairo_fill_preserve", 
+proc fillPreserve*(cr: PContext){.cdecl, importc: "cairo_fill_preserve", 
                             libcairo.}
-proc copy_page*(cr: PContext){.cdecl, importc: "cairo_copy_page", libcairo.}
-proc show_page*(cr: PContext){.cdecl, importc: "cairo_show_page", libcairo.}
+proc copyPage*(cr: PContext){.cdecl, importc: "cairo_copy_page", libcairo.}
+proc showPage*(cr: PContext){.cdecl, importc: "cairo_show_page", libcairo.}
   #* Insideness testing
-proc in_stroke*(cr: PContext, x, y: float64): TBool{.cdecl, importc: "cairo_in_stroke", 
+proc inStroke*(cr: PContext, x, y: float64): TBool{.cdecl, importc: "cairo_in_stroke", 
     libcairo.}
-proc in_fill*(cr: PContext, x, y: float64): TBool{.cdecl, importc: "cairo_in_fill", 
+proc inFill*(cr: PContext, x, y: float64): TBool{.cdecl, importc: "cairo_in_fill", 
     libcairo.}
   #* Rectangular extents
-proc stroke_extents*(cr: PContext, x1, y1, x2, y2: var float64){.cdecl, 
+proc strokeExtents*(cr: PContext, x1, y1, x2, y2: var float64){.cdecl, 
     importc: "cairo_stroke_extents", libcairo.}
-proc fill_extents*(cr: PContext, x1, y1, x2, y2: var float64){.cdecl, 
+proc fillExtents*(cr: PContext, x1, y1, x2, y2: var float64){.cdecl, 
     importc: "cairo_fill_extents", libcairo.}
   #* Clipping
-proc reset_clip*(cr: PContext){.cdecl, importc: "cairo_reset_clip", libcairo.}
+proc resetClip*(cr: PContext){.cdecl, importc: "cairo_reset_clip", libcairo.}
 proc clip*(cr: PContext){.cdecl, importc: "cairo_clip", libcairo.}
-proc clip_preserve*(cr: PContext){.cdecl, importc: "cairo_clip_preserve", 
+proc clipPreserve*(cr: PContext){.cdecl, importc: "cairo_clip_preserve", 
                             libcairo.}
-proc clip_extents*(cr: PContext, x1, y1, x2, y2: var float64){.cdecl, 
+proc clipExtents*(cr: PContext, x1, y1, x2, y2: var float64){.cdecl, 
     importc: "cairo_clip_extents", libcairo.}
-proc copy_clip_rectangle_list*(cr: PContext): PRectangleList{.cdecl, 
+proc copyClipRectangleList*(cr: PContext): PRectangleList{.cdecl, 
     importc: "cairo_copy_clip_rectangle_list", libcairo.}
-proc rectangle_list_destroy*(rectangle_list: PRectangleList){.cdecl, 
+proc rectangleListDestroy*(rectangle_list: PRectangleList){.cdecl, 
     importc: "cairo_rectangle_list_destroy", libcairo.}
   #* Font/Text functions
-proc font_options_create*(): PFontOptions{.cdecl, 
+proc fontOptionsCreate*(): PFontOptions{.cdecl, 
     importc: "cairo_font_options_create", libcairo.}
 proc copy*(original: PFontOptions): PFontOptions{.cdecl, 
     importc: "cairo_font_options_copy", libcairo.}
@@ -368,159 +368,159 @@ proc equal*(options, other: PFontOptions): TBool{.cdecl,
     importc: "cairo_font_options_equal", libcairo.}
 proc hash*(options: PFontOptions): int32{.cdecl, 
     importc: "cairo_font_options_hash", libcairo.}
-proc set_antialias*(options: PFontOptions, antialias: TAntialias){.
+proc setAntialias*(options: PFontOptions, antialias: TAntialias){.
     cdecl, importc: "cairo_font_options_set_antialias", libcairo.}
-proc get_antialias*(options: PFontOptions): TAntialias{.cdecl, 
+proc getAntialias*(options: PFontOptions): TAntialias{.cdecl, 
     importc: "cairo_font_options_get_antialias", libcairo.}
-proc set_subpixel_order*(options: PFontOptions, 
+proc setSubpixelOrder*(options: PFontOptions, 
                                       subpixel_order: TSubpixelOrder){.cdecl, 
     importc: "cairo_font_options_set_subpixel_order", libcairo.}
-proc get_subpixel_order*(options: PFontOptions): TSubpixelOrder{.
+proc getSubpixelOrder*(options: PFontOptions): TSubpixelOrder{.
     cdecl, importc: "cairo_font_options_get_subpixel_order", libcairo.}
-proc set_hint_style*(options: PFontOptions, hint_style: THintStyle){.
+proc setHintStyle*(options: PFontOptions, hint_style: THintStyle){.
     cdecl, importc: "cairo_font_options_set_hint_style", libcairo.}
-proc get_hint_style*(options: PFontOptions): THintStyle{.cdecl, 
+proc getHintStyle*(options: PFontOptions): THintStyle{.cdecl, 
     importc: "cairo_font_options_get_hint_style", libcairo.}
-proc set_hint_metrics*(options: PFontOptions, 
+proc setHintMetrics*(options: PFontOptions, 
                                     hint_metrics: THintMetrics){.cdecl, 
     importc: "cairo_font_options_set_hint_metrics", libcairo.}
-proc get_hint_metrics*(options: PFontOptions): THintMetrics{.cdecl, 
+proc getHintMetrics*(options: PFontOptions): THintMetrics{.cdecl, 
     importc: "cairo_font_options_get_hint_metrics", libcairo.}
   #* This interface is for dealing with text as text, not caring about the
   #   font object inside the the TCairo.
-proc select_font_face*(cr: PContext, family: cstring, slant: TFontSlant, 
+proc selectFontFace*(cr: PContext, family: cstring, slant: TFontSlant, 
                        weight: TFontWeight){.cdecl, 
     importc: "cairo_select_font_face", libcairo.}
-proc set_font_size*(cr: PContext, size: float64){.cdecl, 
+proc setFontSize*(cr: PContext, size: float64){.cdecl, 
     importc: "cairo_set_font_size", libcairo.}
-proc set_font_matrix*(cr: PContext, matrix: PMatrix){.cdecl, 
+proc setFontMatrix*(cr: PContext, matrix: PMatrix){.cdecl, 
     importc: "cairo_set_font_matrix", libcairo.}
-proc get_font_matrix*(cr: PContext, matrix: PMatrix){.cdecl, 
+proc getFontMatrix*(cr: PContext, matrix: PMatrix){.cdecl, 
     importc: "cairo_get_font_matrix", libcairo.}
-proc set_font_options*(cr: PContext, options: PFontOptions){.cdecl, 
+proc setFontOptions*(cr: PContext, options: PFontOptions){.cdecl, 
     importc: "cairo_set_font_options", libcairo.}
-proc get_font_options*(cr: PContext, options: PFontOptions){.cdecl, 
+proc getFontOptions*(cr: PContext, options: PFontOptions){.cdecl, 
     importc: "cairo_get_font_options", libcairo.}
-proc set_font_face*(cr: PContext, font_face: PFontFace){.cdecl, 
+proc setFontFace*(cr: PContext, font_face: PFontFace){.cdecl, 
     importc: "cairo_set_font_face", libcairo.}
-proc get_font_face*(cr: PContext): PFontFace{.cdecl, importc: "cairo_get_font_face", 
+proc getFontFace*(cr: PContext): PFontFace{.cdecl, importc: "cairo_get_font_face", 
                                        libcairo.}
-proc set_scaled_font*(cr: PContext, scaled_font: PScaledFont){.cdecl, 
+proc setScaledFont*(cr: PContext, scaled_font: PScaledFont){.cdecl, 
     importc: "cairo_set_scaled_font", libcairo.}
-proc get_scaled_font*(cr: PContext): PScaledFont{.cdecl, 
+proc getScaledFont*(cr: PContext): PScaledFont{.cdecl, 
     importc: "cairo_get_scaled_font", libcairo.}
-proc show_text*(cr: PContext, utf8: cstring){.cdecl, importc: "cairo_show_text", 
+proc showText*(cr: PContext, utf8: cstring){.cdecl, importc: "cairo_show_text", 
                                        libcairo.}
-proc show_glyphs*(cr: PContext, glyphs: PGlyph, num_glyphs: int32){.cdecl, 
+proc showGlyphs*(cr: PContext, glyphs: PGlyph, num_glyphs: int32){.cdecl, 
     importc: "cairo_show_glyphs", libcairo.}
-proc text_path*(cr: PContext, utf8: cstring){.cdecl, importc: "cairo_text_path", 
+proc textPath*(cr: PContext, utf8: cstring){.cdecl, importc: "cairo_text_path", 
                                        libcairo.}
-proc glyph_path*(cr: PContext, glyphs: PGlyph, num_glyphs: int32){.cdecl, 
+proc glyphPath*(cr: PContext, glyphs: PGlyph, num_glyphs: int32){.cdecl, 
     importc: "cairo_glyph_path", libcairo.}
-proc text_extents*(cr: PContext, utf8: cstring, extents: PTextExtents){.cdecl, 
+proc textExtents*(cr: PContext, utf8: cstring, extents: PTextExtents){.cdecl, 
     importc: "cairo_text_extents", libcairo.}
-proc glyph_extents*(cr: PContext, glyphs: PGlyph, num_glyphs: int32, 
+proc glyphExtents*(cr: PContext, glyphs: PGlyph, num_glyphs: int32, 
                     extents: PTextExtents){.cdecl, 
     importc: "cairo_glyph_extents", libcairo.}
-proc font_extents*(cr: PContext, extents: PFontExtents){.cdecl, 
+proc fontExtents*(cr: PContext, extents: PFontExtents){.cdecl, 
     importc: "cairo_font_extents", libcairo.}
   #* Generic identifier for a font style
 proc reference*(font_face: PFontFace): PFontFace{.cdecl, 
     importc: "cairo_font_face_reference", libcairo.}
 proc destroy*(font_face: PFontFace){.cdecl, 
     importc: "cairo_font_face_destroy", libcairo.}
-proc get_reference_count*(font_face: PFontFace): int32{.cdecl, 
+proc getReferenceCount*(font_face: PFontFace): int32{.cdecl, 
     importc: "cairo_font_face_get_reference_count", libcairo.}
 proc status*(font_face: PFontFace): TStatus{.cdecl, 
     importc: "cairo_font_face_status", libcairo.}
-proc get_type*(font_face: PFontFace): TFontType{.cdecl, 
+proc getType*(font_face: PFontFace): TFontType{.cdecl, 
     importc: "cairo_font_face_get_type", libcairo.}
-proc get_user_data*(font_face: PFontFace, key: PUserDataKey): pointer{.
+proc getUserData*(font_face: PFontFace, key: PUserDataKey): pointer{.
     cdecl, importc: "cairo_font_face_get_user_data", libcairo.}
-proc set_user_data*(font_face: PFontFace, key: PUserDataKey, 
+proc setUserData*(font_face: PFontFace, key: PUserDataKey, 
                     user_data: pointer, destroy: TDestroyFunc): TStatus{.
     cdecl, importc: "cairo_font_face_set_user_data", libcairo.}
   #* Portable interface to general font features
-proc scaled_font_create*(font_face: PFontFace, font_matrix: PMatrix, 
+proc scaledFontCreate*(font_face: PFontFace, font_matrix: PMatrix, 
                          ctm: PMatrix, options: PFontOptions): PScaledFont{.
     cdecl, importc: "cairo_scaled_font_create", libcairo.}
 proc reference*(scaled_font: PScaledFont): PScaledFont{.cdecl, 
     importc: "cairo_scaled_font_reference", libcairo.}
 proc destroy*(scaled_font: PScaledFont){.cdecl, 
     importc: "cairo_scaled_font_destroy", libcairo.}
-proc get_reference_count*(scaled_font: PScaledFont): int32{.cdecl, 
+proc getReferenceCount*(scaled_font: PScaledFont): int32{.cdecl, 
     importc: "cairo_scaled_font_get_reference_count", libcairo.}
 proc status*(scaled_font: PScaledFont): TStatus{.cdecl, 
     importc: "cairo_scaled_font_status", libcairo.}
-proc get_type*(scaled_font: PScaledFont): TFontType{.cdecl, 
+proc getType*(scaled_font: PScaledFont): TFontType{.cdecl, 
     importc: "cairo_scaled_font_get_type", libcairo.}
-proc get_user_data*(scaled_font: PScaledFont, key: PUserDataKey): pointer{.
+proc getUserData*(scaled_font: PScaledFont, key: PUserDataKey): pointer{.
     cdecl, importc: "cairo_scaled_font_get_user_data", libcairo.}
-proc set_user_data*(scaled_font: PScaledFont, key: PUserDataKey, 
+proc setUserData*(scaled_font: PScaledFont, key: PUserDataKey, 
                     user_data: pointer, destroy: TDestroyFunc): TStatus{.
     cdecl, importc: "cairo_scaled_font_set_user_data", libcairo.}
 proc extents*(scaled_font: PScaledFont, extents: PFontExtents){.
     cdecl, importc: "cairo_scaled_font_extents", libcairo.}
-proc text_extents*(scaled_font: PScaledFont, utf8: cstring, 
+proc textExtents*(scaled_font: PScaledFont, utf8: cstring, 
                    extents: PTextExtents){.cdecl, 
     importc: "cairo_scaled_font_text_extents", libcairo.}
-proc glyph_extents*(scaled_font: PScaledFont, glyphs: PGlyph, 
+proc glyphExtents*(scaled_font: PScaledFont, glyphs: PGlyph, 
                                 num_glyphs: int32, extents: PTextExtents){.
     cdecl, importc: "cairo_scaled_font_glyph_extents", libcairo.}
-proc get_font_face*(scaled_font: PScaledFont): PFontFace{.cdecl, 
+proc getFontFace*(scaled_font: PScaledFont): PFontFace{.cdecl, 
     importc: "cairo_scaled_font_get_font_face", libcairo.}
-proc get_font_matrix*(scaled_font: PScaledFont, font_matrix: PMatrix){.
+proc getFontMatrix*(scaled_font: PScaledFont, font_matrix: PMatrix){.
     cdecl, importc: "cairo_scaled_font_get_font_matrix", libcairo.}
-proc get_ctm*(scaled_font: PScaledFont, ctm: PMatrix){.cdecl, 
+proc getCtm*(scaled_font: PScaledFont, ctm: PMatrix){.cdecl, 
     importc: "cairo_scaled_font_get_ctm", libcairo.}
-proc get_font_options*(scaled_font: PScaledFont, 
+proc getFontOptions*(scaled_font: PScaledFont, 
                                    options: PFontOptions){.cdecl, 
     importc: "cairo_scaled_font_get_font_options", libcairo.}
   #* Query functions
-proc get_operator*(cr: PContext): TOperator{.cdecl, importc: "cairo_get_operator", 
+proc getOperator*(cr: PContext): TOperator{.cdecl, importc: "cairo_get_operator", 
                                       libcairo.}
-proc get_source*(cr: PContext): PPattern{.cdecl, importc: "cairo_get_source", 
+proc getSource*(cr: PContext): PPattern{.cdecl, importc: "cairo_get_source", 
                                    libcairo.}
-proc get_tolerance*(cr: PContext): float64{.cdecl, importc: "cairo_get_tolerance", 
+proc getTolerance*(cr: PContext): float64{.cdecl, importc: "cairo_get_tolerance", 
                                      libcairo.}
-proc get_antialias*(cr: PContext): TAntialias{.cdecl, importc: "cairo_get_antialias", 
+proc getAntialias*(cr: PContext): TAntialias{.cdecl, importc: "cairo_get_antialias", 
                                         libcairo.}
-proc get_current_point*(cr: PContext, x, y: var float64){.cdecl, 
+proc getCurrentPoint*(cr: PContext, x, y: var float64){.cdecl, 
     importc: "cairo_get_current_point", libcairo.}
-proc get_fill_rule*(cr: PContext): TFillRule{.cdecl, importc: "cairo_get_fill_rule", 
+proc getFillRule*(cr: PContext): TFillRule{.cdecl, importc: "cairo_get_fill_rule", 
                                        libcairo.}
-proc get_line_width*(cr: PContext): float64{.cdecl, importc: "cairo_get_line_width", 
+proc getLineWidth*(cr: PContext): float64{.cdecl, importc: "cairo_get_line_width", 
                                       libcairo.}
-proc get_line_cap*(cr: PContext): TLineCap{.cdecl, importc: "cairo_get_line_cap", 
+proc getLineCap*(cr: PContext): TLineCap{.cdecl, importc: "cairo_get_line_cap", 
                                      libcairo.}
-proc get_line_join*(cr: PContext): TLineJoin{.cdecl, importc: "cairo_get_line_join", 
+proc getLineJoin*(cr: PContext): TLineJoin{.cdecl, importc: "cairo_get_line_join", 
                                        libcairo.}
-proc get_miter_limit*(cr: PContext): float64{.cdecl, importc: "cairo_get_miter_limit", 
+proc getMiterLimit*(cr: PContext): float64{.cdecl, importc: "cairo_get_miter_limit", 
                                        libcairo.}
-proc get_dash_count*(cr: PContext): int32{.cdecl, importc: "cairo_get_dash_count", 
+proc getDashCount*(cr: PContext): int32{.cdecl, importc: "cairo_get_dash_count", 
                                     libcairo.}
-proc get_dash*(cr: PContext, dashes, offset: var float64){.cdecl, 
+proc getDash*(cr: PContext, dashes, offset: var float64){.cdecl, 
     importc: "cairo_get_dash", libcairo.}
-proc get_matrix*(cr: PContext, matrix: PMatrix){.cdecl, importc: "cairo_get_matrix", 
+proc getMatrix*(cr: PContext, matrix: PMatrix){.cdecl, importc: "cairo_get_matrix", 
     libcairo.}
-proc get_target*(cr: PContext): PSurface{.cdecl, importc: "cairo_get_target", 
+proc getTarget*(cr: PContext): PSurface{.cdecl, importc: "cairo_get_target", 
                                    libcairo.}
-proc get_group_target*(cr: PContext): PSurface{.cdecl, 
+proc getGroupTarget*(cr: PContext): PSurface{.cdecl, 
     importc: "cairo_get_group_target", libcairo.}
-proc copy_path*(cr: PContext): PPath{.cdecl, importc: "cairo_copy_path", 
+proc copyPath*(cr: PContext): PPath{.cdecl, importc: "cairo_copy_path", 
                                libcairo.}
-proc copy_path_flat*(cr: PContext): PPath{.cdecl, importc: "cairo_copy_path_flat", 
+proc copyPathFlat*(cr: PContext): PPath{.cdecl, importc: "cairo_copy_path_flat", 
                                     libcairo.}
-proc append_path*(cr: PContext, path: PPath){.cdecl, importc: "cairo_append_path", 
+proc appendPath*(cr: PContext, path: PPath){.cdecl, importc: "cairo_append_path", 
                                        libcairo.}
 proc destroy*(path: PPath){.cdecl, importc: "cairo_path_destroy", 
                                  libcairo.}
   #* Error status queries
 proc status*(cr: PContext): TStatus{.cdecl, importc: "cairo_status", libcairo.}
-proc status_to_string*(status: TStatus): cstring{.cdecl, 
+proc statusToString*(status: TStatus): cstring{.cdecl, 
     importc: "cairo_status_to_string", libcairo.}
   #* Surface manipulation
-proc surface_create_similar*(other: PSurface, content: TContent, 
+proc surfaceCreateSimilar*(other: PSurface, content: TContent, 
                              width, height: int32): PSurface{.cdecl, 
     importc: "cairo_surface_create_similar", libcairo.}
 proc reference*(surface: PSurface): PSurface{.cdecl, 
@@ -529,131 +529,131 @@ proc finish*(surface: PSurface){.cdecl, importc: "cairo_surface_finish",
     libcairo.}
 proc destroy*(surface: PSurface){.cdecl, 
     importc: "cairo_surface_destroy", libcairo.}
-proc get_reference_count*(surface: PSurface): int32{.cdecl, 
+proc getReferenceCount*(surface: PSurface): int32{.cdecl, 
     importc: "cairo_surface_get_reference_count", libcairo.}
 proc status*(surface: PSurface): TStatus{.cdecl, 
     importc: "cairo_surface_status", libcairo.}
-proc get_type*(surface: PSurface): TSurfaceType{.cdecl, 
+proc getType*(surface: PSurface): TSurfaceType{.cdecl, 
     importc: "cairo_surface_get_type", libcairo.}
-proc get_content*(surface: PSurface): TContent{.cdecl, 
+proc getContent*(surface: PSurface): TContent{.cdecl, 
     importc: "cairo_surface_get_content", libcairo.}
-proc write_to_png*(surface: PSurface, filename: cstring): TStatus{.
+proc writeToPng*(surface: PSurface, filename: cstring): TStatus{.
     cdecl, importc: "cairo_surface_write_to_png", libcairo.}
-proc write_to_png*(surface: PSurface, write_func: TWriteFunc, 
+proc writeToPng*(surface: PSurface, write_func: TWriteFunc, 
                    closure: pointer): TStatus{.cdecl, 
     importc: "cairo_surface_write_to_png_stream", libcairo.}
-proc get_user_data*(surface: PSurface, key: PUserDataKey): pointer{.
+proc getUserData*(surface: PSurface, key: PUserDataKey): pointer{.
     cdecl, importc: "cairo_surface_get_user_data", libcairo.}
-proc set_user_data*(surface: PSurface, key: PUserDataKey, 
+proc setUserData*(surface: PSurface, key: PUserDataKey, 
                             user_data: pointer, destroy: TDestroyFunc): TStatus{.
     cdecl, importc: "cairo_surface_set_user_data", libcairo.}
-proc get_font_options*(surface: PSurface, options: PFontOptions){.cdecl, 
+proc getFontOptions*(surface: PSurface, options: PFontOptions){.cdecl, 
     importc: "cairo_surface_get_font_options", libcairo.}
 proc flush*(surface: PSurface){.cdecl, importc: "cairo_surface_flush", 
                                         libcairo.}
-proc mark_dirty*(surface: PSurface){.cdecl, 
+proc markDirty*(surface: PSurface){.cdecl, 
     importc: "cairo_surface_mark_dirty", libcairo.}
-proc mark_dirty_rectangle*(surface: PSurface, x, y, width, height: int32){.
+proc markDirtyRectangle*(surface: PSurface, x, y, width, height: int32){.
     cdecl, importc: "cairo_surface_mark_dirty_rectangle", libcairo.}
-proc set_device_offset*(surface: PSurface, x_offset, y_offset: float64){.
+proc setDeviceOffset*(surface: PSurface, x_offset, y_offset: float64){.
     cdecl, importc: "cairo_surface_set_device_offset", libcairo.}
-proc get_device_offset*(surface: PSurface, 
+proc getDeviceOffset*(surface: PSurface, 
                                 x_offset, y_offset: var float64){.cdecl, 
     importc: "cairo_surface_get_device_offset", libcairo.}
-proc set_fallback_resolution*(surface: PSurface, x_pixels_per_inch, 
+proc setFallbackResolution*(surface: PSurface, x_pixels_per_inch, 
     y_pixels_per_inch: float64){.cdecl, importc: "cairo_surface_set_fallback_resolution", 
                                  libcairo.}
   #* Image-surface functions
-proc image_surface_create*(format: TFormat, width, height: int32): PSurface{.
+proc imageSurfaceCreate*(format: TFormat, width, height: int32): PSurface{.
     cdecl, importc: "cairo_image_surface_create", libcairo.}
-proc image_surface_create*(data: Pbyte, format: TFormat, 
+proc imageSurfaceCreate*(data: Pbyte, format: TFormat, 
                            width, height, stride: int32): PSurface{.
     cdecl, importc: "cairo_image_surface_create_for_data", libcairo.}
-proc get_data*(surface: PSurface): cstring{.cdecl, 
+proc getData*(surface: PSurface): cstring{.cdecl, 
     importc: "cairo_image_surface_get_data", libcairo.}
-proc get_format*(surface: PSurface): TFormat{.cdecl, 
+proc getFormat*(surface: PSurface): TFormat{.cdecl, 
     importc: "cairo_image_surface_get_format", libcairo.}
-proc get_width*(surface: PSurface): int32{.cdecl, 
+proc getWidth*(surface: PSurface): int32{.cdecl, 
     importc: "cairo_image_surface_get_width", libcairo.}
-proc get_height*(surface: PSurface): int32{.cdecl, 
+proc getHeight*(surface: PSurface): int32{.cdecl, 
     importc: "cairo_image_surface_get_height", libcairo.}
-proc get_stride*(surface: PSurface): int32{.cdecl, 
+proc getStride*(surface: PSurface): int32{.cdecl, 
     importc: "cairo_image_surface_get_stride", libcairo.}
-proc image_surface_create_from_png*(filename: cstring): PSurface{.cdecl, 
+proc imageSurfaceCreateFromPng*(filename: cstring): PSurface{.cdecl, 
     importc: "cairo_image_surface_create_from_png", libcairo.}
-proc image_surface_create_from_png*(read_func: TReadFunc, 
+proc imageSurfaceCreateFromPng*(read_func: TReadFunc, 
     closure: pointer): PSurface{.cdecl, importc: "cairo_image_surface_create_from_png_stream", 
                                  libcairo.}
   #* Pattern creation functions
-proc pattern_create_rgb*(red, green, blue: float64): PPattern{.cdecl, 
+proc patternCreateRgb*(red, green, blue: float64): PPattern{.cdecl, 
     importc: "cairo_pattern_create_rgb", libcairo.}
-proc pattern_create_rgba*(red, green, blue, alpha: float64): PPattern{.cdecl, 
+proc patternCreateRgba*(red, green, blue, alpha: float64): PPattern{.cdecl, 
     importc: "cairo_pattern_create_rgba", libcairo.}
-proc pattern_create_for_surface*(surface: PSurface): PPattern{.cdecl, 
+proc patternCreateForSurface*(surface: PSurface): PPattern{.cdecl, 
     importc: "cairo_pattern_create_for_surface", libcairo.}
-proc pattern_create_linear*(x0, y0, x1, y1: float64): PPattern{.cdecl, 
+proc patternCreateLinear*(x0, y0, x1, y1: float64): PPattern{.cdecl, 
     importc: "cairo_pattern_create_linear", libcairo.}
-proc pattern_create_radial*(cx0, cy0, radius0, cx1, cy1, radius1: float64): PPattern{.
+proc patternCreateRadial*(cx0, cy0, radius0, cx1, cy1, radius1: float64): PPattern{.
     cdecl, importc: "cairo_pattern_create_radial", libcairo.}
 proc reference*(pattern: PPattern): PPattern{.cdecl, 
     importc: "cairo_pattern_reference", libcairo.}
 proc destroy*(pattern: PPattern){.cdecl, 
     importc: "cairo_pattern_destroy", libcairo.}
-proc get_reference_count*(pattern: PPattern): int32{.cdecl, 
+proc getReferenceCount*(pattern: PPattern): int32{.cdecl, 
     importc: "cairo_pattern_get_reference_count", libcairo.}
 proc status*(pattern: PPattern): TStatus{.cdecl, 
     importc: "cairo_pattern_status", libcairo.}
-proc get_user_data*(pattern: PPattern, key: PUserDataKey): pointer{.
+proc getUserData*(pattern: PPattern, key: PUserDataKey): pointer{.
     cdecl, importc: "cairo_pattern_get_user_data", libcairo.}
-proc set_user_data*(pattern: PPattern, key: PUserDataKey, 
+proc setUserData*(pattern: PPattern, key: PUserDataKey, 
                     user_data: pointer, destroy: TDestroyFunc): TStatus{.
     cdecl, importc: "cairo_pattern_set_user_data", libcairo.}
-proc get_type*(pattern: PPattern): TPatternType{.cdecl, 
+proc getType*(pattern: PPattern): TPatternType{.cdecl, 
     importc: "cairo_pattern_get_type", libcairo.}
-proc add_color_stop_rgb*(pattern: PPattern, 
+proc addColorStopRgb*(pattern: PPattern, 
                                  offset, red, green, blue: float64){.cdecl, 
     importc: "cairo_pattern_add_color_stop_rgb", libcairo.}
-proc add_color_stop_rgba*(pattern: PPattern, 
+proc addColorStopRgba*(pattern: PPattern, 
                                   offset, red, green, blue, alpha: float64){.
     cdecl, importc: "cairo_pattern_add_color_stop_rgba", libcairo.}
-proc set_matrix*(pattern: PPattern, matrix: PMatrix){.cdecl, 
+proc setMatrix*(pattern: PPattern, matrix: PMatrix){.cdecl, 
     importc: "cairo_pattern_set_matrix", libcairo.}
-proc get_matrix*(pattern: PPattern, matrix: PMatrix){.cdecl, 
+proc getMatrix*(pattern: PPattern, matrix: PMatrix){.cdecl, 
     importc: "cairo_pattern_get_matrix", libcairo.}
-proc set_extend*(pattern: PPattern, extend: TExtend){.cdecl, 
+proc setExtend*(pattern: PPattern, extend: TExtend){.cdecl, 
     importc: "cairo_pattern_set_extend", libcairo.}
-proc get_extend*(pattern: PPattern): TExtend{.cdecl, 
+proc getExtend*(pattern: PPattern): TExtend{.cdecl, 
     importc: "cairo_pattern_get_extend", libcairo.}
-proc set_filter*(pattern: PPattern, filter: TFilter){.cdecl, 
+proc setFilter*(pattern: PPattern, filter: TFilter){.cdecl, 
     importc: "cairo_pattern_set_filter", libcairo.}
-proc get_filter*(pattern: PPattern): TFilter{.cdecl, 
+proc getFilter*(pattern: PPattern): TFilter{.cdecl, 
     importc: "cairo_pattern_get_filter", libcairo.}
-proc get_rgba*(pattern: PPattern, 
+proc getRgba*(pattern: PPattern, 
                red, green, blue, alpha: var float64): TStatus{.
     cdecl, importc: "cairo_pattern_get_rgba", libcairo.}
-proc get_surface*(pattern: PPattern, surface: PPSurface): TStatus{.
+proc getSurface*(pattern: PPattern, surface: PPSurface): TStatus{.
     cdecl, importc: "cairo_pattern_get_surface", libcairo.}
-proc get_color_stop_rgba*(pattern: PPattern, index: int32, 
+proc getColorStopRgba*(pattern: PPattern, index: int32, 
                        offset, red, green, blue, alpha: var float64): TStatus{.
     cdecl, importc: "cairo_pattern_get_color_stop_rgba", libcairo.}
-proc get_color_stop_count*(pattern: PPattern, count: var int32): TStatus{.
+proc getColorStopCount*(pattern: PPattern, count: var int32): TStatus{.
     cdecl, importc: "cairo_pattern_get_color_stop_count", libcairo.}
-proc get_linear_points*(pattern: PPattern, 
+proc getLinearPoints*(pattern: PPattern, 
                         x0, y0, x1, y1: var float64): TStatus{.
     cdecl, importc: "cairo_pattern_get_linear_points", libcairo.}
-proc get_radial_circles*(pattern: PPattern, 
+proc getRadialCircles*(pattern: PPattern, 
                          x0, y0, r0, x1, y1, r1: var float64): TStatus{.
     cdecl, importc: "cairo_pattern_get_radial_circles", libcairo.}
   #* Matrix functions
 proc init*(matrix: PMatrix, xx, yx, xy, yy, x0, y0: float64){.cdecl, 
     importc: "cairo_matrix_init", libcairo.}
-proc init_identity*(matrix: PMatrix){.cdecl, 
+proc initIdentity*(matrix: PMatrix){.cdecl, 
     importc: "cairo_matrix_init_identity", libcairo.}
-proc init_translate*(matrix: PMatrix, tx, ty: float64){.cdecl, 
+proc initTranslate*(matrix: PMatrix, tx, ty: float64){.cdecl, 
     importc: "cairo_matrix_init_translate", libcairo.}
-proc init_scale*(matrix: PMatrix, sx, sy: float64){.cdecl, 
+proc initScale*(matrix: PMatrix, sx, sy: float64){.cdecl, 
     importc: "cairo_matrix_init_scale", libcairo.}
-proc init_rotate*(matrix: PMatrix, radians: float64){.cdecl, 
+proc initRotate*(matrix: PMatrix, radians: float64){.cdecl, 
     importc: "cairo_matrix_init_rotate", libcairo.}
 proc translate*(matrix: PMatrix, tx, ty: float64){.cdecl, 
     importc: "cairo_matrix_translate", libcairo.}
@@ -665,52 +665,52 @@ proc invert*(matrix: PMatrix): TStatus{.cdecl,
     importc: "cairo_matrix_invert", libcairo.}
 proc multiply*(result, a, b: PMatrix){.cdecl, 
     importc: "cairo_matrix_multiply", libcairo.}
-proc transform_distance*(matrix: PMatrix, dx, dy: var float64){.cdecl, 
+proc transformDistance*(matrix: PMatrix, dx, dy: var float64){.cdecl, 
     importc: "cairo_matrix_transform_distance", libcairo.}
-proc transform_point*(matrix: PMatrix, x, y: var float64){.cdecl, 
+proc transformPoint*(matrix: PMatrix, x, y: var float64){.cdecl, 
     importc: "cairo_matrix_transform_point", libcairo.}
   #* PDF functions
-proc pdf_surface_create*(filename: cstring, 
+proc pdfSurfaceCreate*(filename: cstring, 
                          width_in_points, height_in_points: float64): PSurface{.
     cdecl, importc: "cairo_pdf_surface_create", libcairo.}
-proc pdf_surface_create_for_stream*(write_func: TWriteFunc, closure: pointer, 
+proc pdfSurfaceCreateForStream*(write_func: TWriteFunc, closure: pointer, 
                                     width_in_points, height_in_points: float64): PSurface{.
     cdecl, importc: "cairo_pdf_surface_create_for_stream", libcairo.}
-proc pdf_surface_set_size*(surface: PSurface, 
+proc pdfSurfaceSetSize*(surface: PSurface, 
                            width_in_points, height_in_points: float64){.cdecl, 
     importc: "cairo_pdf_surface_set_size", libcairo.}
   #* PS functions
-proc ps_surface_create*(filename: cstring, 
+proc psSurfaceCreate*(filename: cstring, 
                         width_in_points, height_in_points: float64): PSurface{.
     cdecl, importc: "cairo_ps_surface_create", libcairo.}
-proc ps_surface_create_for_stream*(write_func: TWriteFunc, closure: pointer, 
+proc psSurfaceCreateForStream*(write_func: TWriteFunc, closure: pointer, 
                                    width_in_points, height_in_points: float64): PSurface{.
     cdecl, importc: "cairo_ps_surface_create_for_stream", libcairo.}
-proc ps_surface_set_size*(surface: PSurface, 
+proc psSurfaceSetSize*(surface: PSurface, 
                           width_in_points, height_in_points: float64){.cdecl, 
     importc: "cairo_ps_surface_set_size", libcairo.}
-proc ps_surface_dsc_comment*(surface: PSurface, comment: cstring){.cdecl, 
+proc psSurfaceDscComment*(surface: PSurface, comment: cstring){.cdecl, 
     importc: "cairo_ps_surface_dsc_comment", libcairo.}
-proc ps_surface_dsc_begin_setup*(surface: PSurface){.cdecl, 
+proc psSurfaceDscBeginSetup*(surface: PSurface){.cdecl, 
     importc: "cairo_ps_surface_dsc_begin_setup", libcairo.}
-proc ps_surface_dsc_begin_page_setup*(surface: PSurface){.cdecl, 
+proc psSurfaceDscBeginPageSetup*(surface: PSurface){.cdecl, 
     importc: "cairo_ps_surface_dsc_begin_page_setup", libcairo.}
   #* SVG functions
-proc svg_surface_create*(filename: cstring, 
+proc svgSurfaceCreate*(filename: cstring, 
                          width_in_points, height_in_points: float64): PSurface{.
     cdecl, importc: "cairo_svg_surface_create", libcairo.}
-proc svg_surface_create_for_stream*(write_func: TWriteFunc, closure: pointer, 
+proc svgSurfaceCreateForStream*(write_func: TWriteFunc, closure: pointer, 
                                     width_in_points, height_in_points: float64): PSurface{.
     cdecl, importc: "cairo_svg_surface_create_for_stream", libcairo.}
-proc svg_surface_restrict_to_version*(surface: PSurface, version: TSvgVersion){.
+proc svgSurfaceRestrictToVersion*(surface: PSurface, version: TSvgVersion){.
     cdecl, importc: "cairo_svg_surface_restrict_to_version", libcairo.}
   #todo: see how translate this
   #procedure cairo_svg_get_versions(TCairoSvgVersion const	**versions,
   #                        int                      	 *num_versions);
-proc svg_version_to_string*(version: TSvgVersion): cstring{.cdecl, 
+proc svgVersionToString*(version: TSvgVersion): cstring{.cdecl, 
     importc: "cairo_svg_version_to_string", libcairo.}
   #* Functions to be used while debugging (not intended for use in production code)
-proc debug_reset_static_data*(){.cdecl, 
+proc debugResetStaticData*(){.cdecl, 
                                  importc: "cairo_debug_reset_static_data", 
                                  libcairo.}
 # implementation
@@ -737,6 +737,6 @@ proc checkStatus*(s: cairo.TStatus) {.noinline.} =
 
 
 # new since 1.10
-proc surface_create_for_rectangle*(target: PSurface, x,y,w,h: cdouble):
+proc surfaceCreateForRectangle*(target: PSurface, x,y,w,h: cdouble):
     PSurface {.cdecl, importc: "cairo_surface_create_for_rectangle", libcairo.}
 
