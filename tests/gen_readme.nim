@@ -5,9 +5,9 @@ import strutils
 
 
 echo """
-# cairo
+# Cairo
 
-Nim cairo wrapper, solving your vector and text drawing needs.
+Nim Cairo wrapper, solving your vector and text drawing needs.
 
 """
 
@@ -25,14 +25,24 @@ for kind, path in walkDir("tests"):
   if path.endsWith("nim"):
     let code = readFile(path)
     let innerCode = code.cutBetween("surface.create()\n", "\ndiscard surface.writeToPng(")
-    echo "## example: ", path.replace("\\", "/")
-    echo "```nim"
-    echo innerCode
-    echo "```"
-    echo "![example output](", path.replace(".nim", ".png").replace("\\", "/"), ")"
-    echo ""
+    if innerCode != "":
+      echo "## example: ", path.replace("\\", "/")
+      echo "```nim"
+      echo innerCode
+      echo "```"
+      echo "![example output](", path.replace(".nim", ".png").replace("\\", "/"), ")"
+      echo ""
 
 
 echo """
+
+# Realtime
+
+![realtime example](https://github.com/treeform/quickcairo/raw/master/examples/realtime.png)
+
+You can also use cairo for real time graphics using. Here are examples on how to use cairo with:
+  * [SDL2](https://github.com/treeform/quickcairo/blob/master/examples/realtime_sdl2.nim)
+  * [GLUT](https://github.com/treeform/quickcairo/blob/master/examples/realtime_glut.nim)
+  * [GLFW](https://github.com/treeform/quickcairo/blob/master/examples/realtime_glfw.nim)
 
 """

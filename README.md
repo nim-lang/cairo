@@ -1,6 +1,6 @@
-# cairo
+# Cairo
 
-Nim cairo wrapper, solving your vector and text drawing needs.
+Nim Cairo wrapper, solving your vector and text drawing needs.
 
 
 ## example: tests/arc.nim
@@ -154,12 +154,6 @@ ctx.stroke()
 ```
 ![example output](tests/fill_and_stroke.png)
 
-## example: tests/gen_readme.nim
-```nim
-
-```
-![example output](tests/gen_readme.png)
-
 ## example: tests/gradient.nim
 ```nim
 
@@ -285,24 +279,6 @@ ctx.stroke()
 ```
 ![example output](tests/line_join.png)
 
-## example: tests/realtime_glfw.nim
-```nim
-
-```
-![example output](tests/realtime_glfw.png)
-
-## example: tests/realtime_glut.nim
-```nim
-
-```
-![example output](tests/realtime_glut.png)
-
-## example: tests/realtime_sdl2.nim
-```nim
-
-```
-![example output](tests/realtime_sdl2.png)
-
 ## example: tests/rounded_rectangle.nim
 ```nim
 
@@ -393,5 +369,14 @@ ctx.stroke()
 ```
 ![example output](tests/text_align.png)
 
+
+# Realtime
+
+![realtime example](https://github.com/treeform/quickcairo/raw/master/examples/realtime.png)
+
+You can also use cairo for real time graphics using. Here are examples on how to use cairo with:
+  * [SDL2](https://github.com/treeform/quickcairo/blob/master/examples/realtime_sdl2.nim)
+  * [GLUT](https://github.com/treeform/quickcairo/blob/master/examples/realtime_glut.nim)
+  * [GLFW](https://github.com/treeform/quickcairo/blob/master/examples/realtime_glfw.nim)
 
 
