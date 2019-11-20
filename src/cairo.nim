@@ -46,101 +46,123 @@
 # October 2007
 #
 
+
 include "cairo_pragma.nim"
 
 type
   Status* = enum
-    STATUS_SUCCESS = 0,
-    STATUS_NO_MEMORY,
-    STATUS_INVALID_RESTORE,
-    STATUS_INVALID_POP_GROUP,
-    STATUS_NO_CURRENT_POINT,
-    STATUS_INVALID_MATRIX,
-    STATUS_INVALID_STATUS,
-    STATUS_NULL_POINTER,
-    STATUS_INVALID_STRING,
-    STATUS_INVALID_PATH_DATA,
-    STATUS_READ_ERROR,
-    STATUS_WRITE_ERROR,
-    STATUS_SURFACE_FINISHED,
-    STATUS_SURFACE_TYPE_MISMATCH,
-    STATUS_PATTERN_TYPE_MISMATCH,
-    STATUS_INVALID_CONTENT,
-    STATUS_INVALID_FORMAT,
-    STATUS_INVALID_VISUAL,
-    STATUS_FILE_NOT_FOUND,
-    STATUS_INVALID_DASH,
-    STATUS_INVALID_DSC_COMMENT,
-    STATUS_INVALID_INDEX,
-    STATUS_CLIP_NOT_REPRESENTABLE,
-    STATUS_TEMP_FILE_ERROR,
-    STATUS_INVALID_STRIDE,
-    STATUS_FONT_TYPE_MISMATCH,
-    STATUS_USER_FONT_IMMUTABLE,
-    STATUS_USER_FONT_ERROR,
-    STATUS_NEGATIVE_COUNT,
-    STATUS_INVALID_CLUSTERS,
-    STATUS_INVALID_SLANT,
-    STATUS_INVALID_WEIGHT
+    StatusSuccess = 0,
+    StatusNoMemory,
+    StatusInvalidRestore,
+    StatusInvalidPopGroup,
+    StatusNoCurrentPoint,
+    StatusInvalidMatrix,
+    StatusInvalidStatus,
+    StatusNullPointer,
+    StatusInvalidString,
+    StatusInvalidPathData,
+    StatusReadError,
+    StatusWriteError,
+    StatusSurfaceFinished,
+    StatusSurfaceTypeMismatch,
+    StatusPatternTypeMismatch,
+    StatusInvalidContent,
+    StatusInvalidFormat,
+    StatusInvalidVisual,
+    StatusFileNotFound,
+    StatusInvalidDash,
+    StatusInvalidDscComment,
+    StatusInvalidIndex,
+    StatusClipNotRepresentable,
+    StatusTempFileError,
+    StatusInvalidStride,
+    StatusFontTypeMismatch,
+    StatusUserFontImmutable,
+    StatusUserFontError,
+    StatusNegativeCount,
+    StatusInvalidClusters,
+    StatusInvalidSlant,
+    StatusInvalidWeight
 
   Operator* = enum
-    OPERATOR_CLEAR, OPERATOR_SOURCE, OPERATOR_OVER, OPERATOR_IN, OPERATOR_OUT,
-    OPERATOR_ATOP, OPERATOR_DEST, OPERATOR_DEST_OVER, OPERATOR_DEST_IN,
-    OPERATOR_DEST_OUT, OPERATOR_DEST_ATOP, OPERATOR_XOR, OPERATOR_ADD,
-    OPERATOR_SATURATE, OPERATOR_MULTIPLY, OPERATOR_SCREEN, OPERATOR_OVERLAY,
-    OPERATOR_DARKEN, OPERATOR_LIGHTEN, OPERATOR_COLOR_DODGE,
-    OPERATOR_COLOR_BURN, OPERATOR_HARD_LIGHT, OPERATOR_SOFT_LIGHT,
-    OPERATOR_DIFFERENCE, OPERATOR_EXCLUSION, OPERATOR_HSL_HUE,
-    OPERATOR_HSL_SATURATION, OPERATOR_HSL_COLOR, OPERATOR_HSL_LUMINOSITY
+    OperatorClear,
+    OperatorSource,
+    OperatorOver,
+    OperatorIn,
+    OperatorOut,
+    OperatorAtop,
+    OperatorDest,
+    OperatorDestOver,
+    OperatorDestIn,
+    OperatorDestOut,
+    OperatorDestAtop,
+    OperatorXor,
+    OperatorAdd,
+    OperatorSaturate,
+    OperatorMultiply,
+    OperatorScreen,
+    OperatorOverlay,
+    OperatorDarken,
+    OperatorLighten,
+    OperatorColorDodge,
+    OperatorColorBurn,
+    OperatorHardLight,
+    OperatorSoftLight,
+    OperatorDifference,
+    OperatorExclusion,
+    OperatorHslHue,
+    OperatorHslSaturation,
+    OperatorHslColor,
+    OperatorHslLuminosity
 
   Antialias* = enum
-    ANTIALIAS_DEFAULT, ANTIALIAS_NONE, ANTIALIAS_GRAY, ANTIALIAS_SUBPIXEL
+    AntialiasDefault, AntialiasNone, AntialiasGray, AntialiasSubpixel
   FillRule* = enum
-    FILL_RULE_WINDING, FILL_RULE_EVEN_ODD
+    FillRuleWinding, FillRuleEvenOdd
   LineCap* = enum
-    LINE_CAP_BUTT, LINE_CAP_ROUND, LINE_CAP_SQUARE
+    LineCapButt, LineCapRound, LineCapSquare
   LineJoin* = enum
-    LINE_JOIN_MITER, LINE_JOIN_ROUND, LINE_JOIN_BEVEL
+    LineJoinMiter, LineJoinRound, LineJoinBevel
   FontSlant* = enum
-    FONT_SLANT_NORMAL, FONT_SLANT_ITALIC, FONT_SLANT_OBLIQUE
+    FontSlantNormal, FontSlantItalic, FontSlantOblique
   FontWeight* = enum
-    FONT_WEIGHT_NORMAL, FONT_WEIGHT_BOLD
+    FontWeightNormal, FontWeightBold
   SubpixelOrder* = enum
-    SUBPIXEL_ORDER_DEFAULT, SUBPIXEL_ORDER_RGB, SUBPIXEL_ORDER_BGR,
-    SUBPIXEL_ORDER_VRGB, SUBPIXEL_ORDER_VBGR
+    SubpixelOrderDefault, SubpixelOrderRgb, SubpixelOrderBgr,
+    SubpixelOrderVrgb, SubpixelOrderVbgr
   HintStyle* = enum
-    HINT_STYLE_DEFAULT, HINT_STYLE_NONE, HINT_STYLE_SLIGHT, HINT_STYLE_MEDIUM,
-    HINT_STYLE_FULL
+    HintStyleDefault, HintStyleNone, HintStyleSlight, HintStyleMedium,
+    HintStyleFull
   HintMetrics* = enum
-    HINT_METRICS_DEFAULT, HINT_METRICS_OFF, HINT_METRICS_ON
+    HintMetricsDefault, HintMetricsOff, HintMetricsOn
   PathDataType* = enum
-    PATH_MOVE_TO, PATH_LINE_TO, PATH_CURVE_TO, PATH_CLOSE_PATH
+    PathMoveTo, PathLineTo, PathCurveTo, PathClosePath
   Content* = enum
-    CONTENT_COLOR = 0x00001000, CONTENT_ALPHA = 0x00002000,
-    CONTENT_COLOR_ALPHA = 0x00003000
+    ContentColor = 0x00001000, ContentAlpha = 0x00002000,
+    ContentColorAlpha = 0x00003000
   Format* = enum
-    FORMAT_ARGB32, FORMAT_RGB24, FORMAT_A8, FORMAT_A1
+    FormatArgb32, FormatRgb24, FormatA8, FormatA1
   Extend* = enum
-    EXTEND_NONE, EXTEND_REPEAT, EXTEND_REFLECT, EXTEND_PAD
+    ExtendNone, ExtendRepeat, ExtendReflect, ExtendPad
   Filter* = enum
-    FILTER_FAST, FILTER_GOOD, FILTER_BEST, FILTER_NEAREST, FILTER_BILINEAR,
-    FILTER_GAUSSIAN
+    FilterFast, FilterGood, FilterBest, FilterNearest, FilterBilinear,
+    FilterGaussian
   FontType* = enum
-    FONT_TYPE_TOY, FONT_TYPE_FT, FONT_TYPE_WIN32, FONT_TYPE_ATSUI
+    FontTypeToy, FontTypeFt, FontTypeWin32, FontTypeAtsui
   PatternType* = enum
-    PATTERN_TYPE_SOLID, PATTERN_TYPE_SURFACE, PATTERN_TYPE_LINEAR,
-    PATTERN_TYPE_RADIAL
+    PatternTypeSolid, PatternTypeSurface, PatternTypeLinear,
+    PatternTypeRadial
   SurfaceType* = enum
-    SURFACE_TYPE_IMAGE, SURFACE_TYPE_PDF, SURFACE_TYPE_PS, SURFACE_TYPE_XLIB,
-    SURFACE_TYPE_XCB, SURFACE_TYPE_GLITZ, SURFACE_TYPE_QUARTZ,
-    SURFACE_TYPE_WIN32, SURFACE_TYPE_BEOS, SURFACE_TYPE_DIRECTFB,
-    SURFACE_TYPE_SVG, SURFACE_TYPE_OS2
+    SurfaceTypeImage, SurfaceTypePdf, SurfaceTypePs, SurfaceTypeXlib,
+    SurfaceTypeXcb, SurfaceTypeGlitz, SurfaceTypeQuartz,
+    SurfaceTypeWin32, SurfaceTypeBeos, SurfaceTypeDirectfb,
+    SurfaceTypeSvg, SurfaceTypeOs2
   SvgVersion* = enum
-    SVG_VERSION_1_1, SVG_VERSION_1_2
-  Bool* = int32
-  DestroyFunc* = proc (data: pointer){.cdecl.}
-  WriteFunc* = proc (closure: pointer, data: cstring, len: int32): Status{.cdecl.}
-  ReadFunc* = proc (closure: pointer, data: cstring, len: int32): Status{.cdecl.}
+    SvgVersion11, SvgVersion12
+  CairoBool* = int32
+  DestroyFunc* = proc (data: pointer) {.cdecl.}
+  WriteFunc* = proc (closure: pointer, data: cstring, len: int32): Status {.cdecl.}
+  ReadFunc* = proc (closure: pointer, data: cstring, len: int32): Status {.cdecl.}
   Context*{.final.} = object
   Surface*{.final.} = object
   Pattern*{.final.} = object
@@ -195,7 +217,7 @@ type
     rectangles*: ptr Rectangle
     numRectangles* {.importc: "num_rectangles".}: int32
 
-{.push dynlib: LIB_CAIRO, cdecl.}
+{.push dynlib: LibCairo, cdecl.}
 
 proc version*(): int32 {.importc: "cairo_version".}
 proc versionString*(): cstring {.importc: "cairo_version_string".}
@@ -260,8 +282,8 @@ proc fillPreserve*(cr: ptr Context) {.importc: "cairo_fill_preserve".}
 proc copyPage*(cr: ptr Context) {.importc: "cairo_copy_page".}
 proc showPage*(cr: ptr Context) {.importc: "cairo_show_page".}
 # Insideness testing
-proc inStroke*(cr: ptr Context, x, y: float64): Bool {.importc: "cairo_in_stroke".}
-proc inFill*(cr: ptr Context, x, y: float64): Bool {.importc: "cairo_in_fill".}
+proc inStroke*(cr: ptr Context, x, y: float64): CairoBool {.importc: "cairo_in_stroke".}
+proc inFill*(cr: ptr Context, x, y: float64): CairoBool {.importc: "cairo_in_fill".}
 # Rectangular extents
 proc strokeExtents*(cr: ptr Context, x1, y1, x2, y2: var float64) {.importc: "cairo_stroke_extents".}
 proc fillExtents*(cr: ptr Context, x1, y1, x2, y2: var float64) {.importc: "cairo_fill_extents".}
@@ -278,7 +300,7 @@ proc copy*(original: ptr FontOptions): ptr FontOptions {.importc: "cairo_font_op
 proc destroy*(options: ptr FontOptions) {.importc: "cairo_font_options_destroy".}
 proc status*(options: ptr FontOptions): Status {.importc: "cairo_font_options_status".}
 proc merge*(options, other: ptr FontOptions) {.importc: "cairo_font_options_merge".}
-proc equal*(options, other: ptr FontOptions): Bool {.importc: "cairo_font_options_equal".}
+proc equal*(options, other: ptr FontOptions): CairoBool {.importc: "cairo_font_options_equal".}
 proc hash*(options: ptr FontOptions): int32 {.importc: "cairo_font_options_hash".}
 proc setAntialias*(options: ptr FontOptions, antialias: Antialias) {.importc: "cairo_font_options_set_antialias".}
 proc getAntialias*(options: ptr FontOptions): Antialias {.importc: "cairo_font_options_get_antialias".}
@@ -466,8 +488,8 @@ proc checkStatus*(s: Status) {.noinline.} =
   of StatusSuccess: discard
   of StatusNoMemory:
     raise newException(OutOfMemError, $statusToString(s))
-  of STATUS_READ_ERROR, STATUS_WRITE_ERROR, STATUS_FILE_NOT_FOUND,
-     STATUS_TEMP_FILE_ERROR:
+  of StatusReadError, StatusWriteError, StatusFileNotFound,
+     StatusTempFileError:
     raise newException(IOError, $statusToString(s))
   else:
     raise newException(AssertionError, $statusToString(s))
@@ -516,8 +538,8 @@ type
   PSurfaceType* {.deprecated: "use ptr SurfaceType".} = ptr SurfaceType
   TSvgVersion* {.deprecated: "use SvgVersion".} = SvgVersion
   PSvgVersion* {.deprecated: "use ptr SvgVersion".} = ptr SvgVersion
-  TBool* {.deprecated: "use Bool".} = Bool
-  PBool* {.deprecated: "use ptr Bool".} = ptr Bool
+  TBool* {.deprecated: "use CairoBool".} = CairoBool
+  PBool* {.deprecated: "use ptr CairoBool".} = ptr CairoBool
   TDestroyFunc* {.deprecated: "use DestroyFunc".} = DestroyFunc
   PDestroyFunc* {.deprecated: "use ptr DestroyFunc".} = ptr DestroyFunc
   TWriteFunc* {.deprecated: "use WriteFunc".} = WriteFunc

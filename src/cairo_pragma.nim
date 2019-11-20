@@ -8,9 +8,9 @@ when declared(use_pkg_config) or declared(use_pkg_config_static):
     {.passl: gorge("pkg-config cairo --libs").}
 else:
   when defined(windows):
-    const LIB_CAIRO* = "libcairo-2.dll"
+    const LibCairo* = "libcairo-2.dll"
   elif defined(macosx):
-    const LIB_CAIRO* = "libcairo(|.2).dylib"
+    const LibCairo* = "libcairo(|.2).dylib"
   else:
-    const LIB_CAIRO* = "libcairo.so(|.2)"
-  {.pragma: libcairo, cdecl, dynlib: LIB_CAIRO.}
+    const LibCairo* = "libcairo.so(|.2)"
+  {.pragma: libcairo, cdecl, dynlib: LibCairo.}

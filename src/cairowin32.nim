@@ -6,7 +6,7 @@
 import
   cairo, winim
 
-{.push dynlib: LIB_CAIRO, cdecl.}
+{.push dynlib: LibCairo, cdecl.}
 
 proc win32SurfaceCreate*(hdc: HDC): ptr Surface {.importc: "cairo_win32_surface_create".}
 proc win32SurfaceCreateWithDdb*(hdc: HDC, format: Format, width, height: int32): ptr Surface {.importc: "cairo_win32_surface_create_with_ddb".}
