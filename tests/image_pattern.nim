@@ -13,7 +13,7 @@ var
   h = float image.getHeight()
 
 var pattern = patternCreateForSurface(image)
-pattern.set_extend(EXTEND_REPEAT)
+pattern.setExtend(EXTEND_REPEAT)
 
 ctx.translate(128.0, 128.0)
 ctx.rotate(PI / 4)
