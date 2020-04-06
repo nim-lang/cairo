@@ -3,9 +3,11 @@
 import opengl/glut, opengl, opengl/glu, math
 import cairo
 
+let
+  w: int32 = 256
+  h: int32 = 256
+
 var
-  w = 256
-  h = 256
   surface = imageSurfaceCreate(FORMAT_ARGB32, w, h)
   frameCount = 0
 
@@ -28,7 +30,7 @@ proc display() {.cdecl.} =
   ctx.fill()
 
   # update texture with new pixels from surface
-  var dataPtr = surface.imageSurfaceGetData()
+  var dataPtr = surface.getData()
   glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, GLsizei w, GLsizei h, GL_RGBA, GL_UNSIGNED_BYTE, dataPtr);
 
   # draw a quad over the whole screen
@@ -55,7 +57,7 @@ glutDisplayFunc(display)
 loadExtensions()
 
 # allocate a texture and bind it
-var dataPtr = surface.imageSurfaceGetData()
+var dataPtr = surface.getData()
 glTexImage2D(GL_TEXTURE_2D, 0, 3, GLsizei w, GLsizei h, 0, GL_RGBA, GL_UNSIGNED_BYTE, dataPtr);
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
