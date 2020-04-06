@@ -1,11 +1,13 @@
 ## This example show how to have real time cairo using glfw backend
 
-import glfw3 as glfw, opengl, math
+import glfw, opengl, math
 import cairo
 
+let
+  w: int32 = 256
+  h: int32 = 256
+
 var
-  w = 256
-  h = 256
   surface = imageSurfaceCreate(FORMAT_ARGB32, w, h)
   frameCount = 0
   window: Window
@@ -29,7 +31,7 @@ proc display() =
   ctx.fill()
 
   # update texture with new pixels from surface
-  var dataPtr = surface.imageSurfaceGetData()
+  var dataPtr = surface.getData()
   glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, GLsizei w, GLsizei h, GL_RGBA, GL_UNSIGNED_BYTE, dataPtr);
 
   # draw a quad over the whole screen
@@ -42,16 +44,22 @@ proc display() =
   glEnd();
 
   inc frameCount
-  glfw.SwapBuffers(window)
+  glfw.swapBuffers(window)
 
-if glfw.Init() == 0:
-  quit("Failed to Initialize GLFW")
-window = glfw.CreateWindow(cint w, cint h, "Real time GLFW/Cairo example", nil, nil)
-glfw.MakeContextCurrent(window)
+glfw.initialize()
+if GLFWError().error != getNoError:
+  quit("Failed to Initialize GLFW: " & $GLFWError())
+
+window = glfw.newWindow()
+window.pos = (0, 0)
+window.title = "Real time GLFW/Cairo example"
+window.size = (cint w, cint h)
+
+glfw.makeContextCurrent(window)
 loadExtensions()
 
 # allocate a texture and bind it
-var dataPtr = surface.imageSurfaceGetData()
+var dataPtr = surface.getData()
 glTexImage2D(GL_TEXTURE_2D, 0, 3, GLsizei w, GLsizei h, 0, GL_RGBA, GL_UNSIGNED_BYTE, dataPtr);
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
@@ -59,6 +67,6 @@ glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 glEnable(GL_TEXTURE_2D);
 
-while glfw.WindowShouldClose(window) == 0:
-  glfw.PollEvents()
+while window.shouldClose() == false:
+  glfw.pollEvents()
   display()
