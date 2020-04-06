@@ -3,9 +3,11 @@
 import sdl2, sdl2/gfx, math, random
 import cairo
 
+let
+  w: int32 = 256
+  h: int32 = 256
+
 var
-  w = 256
-  h = 256
   surface = imageSurfaceCreate(FORMAT_ARGB32, w, h)
   frameCount = 0
   window: WindowPtr
@@ -35,7 +37,7 @@ proc display() =
   inc frameCount
 
   # cairo surface -> sdl serface -> sdl texture -> copy to render
-  var dataPtr = surface.imageSurfaceGetData()
+  var dataPtr = surface.getData()
   mainSerface.pixels = dataPtr
   mainTexture = render.createTextureFromSurface(mainSerface)
   render.copy(mainTexture, nil, nil)
