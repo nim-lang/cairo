@@ -1,6 +1,6 @@
 # Package
 
-version      = "1.1"
+version = "1.1.1"
 author       = "Andreas Rumpf"
 description  = "Wrapper for cairo, a vector graphics library with display and print output"
 license      = "MIT"
