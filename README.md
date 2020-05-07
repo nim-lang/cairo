@@ -135,9 +135,9 @@ ctx.stroke()
 
 ctx.moveTo(128.0, 25.6)
 ctx.lineTo(230.4, 230.4)
-ctx.rel_lineTo(-102.4, 0.0)
+ctx.relLineTo(-102.4, 0.0)
 ctx.curveTo(51.2, 230.4, 51.2, 128.0, 128.0, 128.0)
-ctx.close_path()
+ctx.closePath()
 
 ctx.moveTo(64.0, 25.6)
 ctx.relLineTo(51.2, 51.2)
@@ -204,7 +204,7 @@ var
   h = float image.getHeight()
 
 var pattern = patternCreateForSurface(image)
-pattern.set_extend(EXTEND_REPEAT)
+pattern.setExtend(EXTEND_REPEAT)
 
 ctx.translate(128.0, 128.0)
 ctx.rotate(PI / 4)
@@ -235,7 +235,7 @@ ctx.setLineCap(LINE_CAP_ROUND)
 ctx.moveTo(128.0, 50.0)
 ctx.lineTo(128.0, 200.0)
 ctx.stroke()
-ctx.setLine_cap (LINE_CAP_SQUARE)
+ctx.setLineCap(LINE_CAP_SQUARE)
 ctx.moveTo(192.0, 50.0)
 ctx.lineTo(192.0, 200.0)
 ctx.stroke()
@@ -289,8 +289,8 @@ var
   width         = 204.8
   height        = 204.8
   aspect        = 1.0     # aspect ratio
-  corner_radius = height / 10.0   # and corner curvature radius
-  radius = corner_radius / aspect
+  cornerRadius = height / 10.0   # and corner curvature radius
+  radius = cornerRadius / aspect
   degrees = PI / 180.0
 
 ctx.newSubPath()
@@ -360,7 +360,7 @@ ctx.setSourceRGBA(1, 0.2, 0.2, 0.6)
 ctx.setLineWidth(6.0)
 ctx.arc(x, y, 10.0, 0, 2*PI)
 ctx.fill()
-ctx.move_to(128.0, 0)
+ctx.moveTo(128.0, 0)
 ctx.relLineTo(0, 256)
 ctx.moveTo(0, 128.0)
 ctx.relLineTo(256, 0)

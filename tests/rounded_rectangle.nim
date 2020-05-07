@@ -14,8 +14,8 @@ var
   width         = 204.8
   height        = 204.8
   aspect        = 1.0     # aspect ratio
-  corner_radius = height / 10.0   # and corner curvature radius
-  radius = corner_radius / aspect
+  cornerRadius = height / 10.0   # and corner curvature radius
+  radius = cornerRadius / aspect
   degrees = PI / 180.0
 
 ctx.newSubPath()
