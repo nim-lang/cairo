@@ -372,11 +372,11 @@ ctx.stroke()
 
 # Realtime
 
-![realtime example](https://github.com/treeform/quickcairo/raw/master/examples/realtime.png)
+![realtime example](tests/realtime.png)
 
 You can also use cairo for real time graphics using. Here are examples on how to use cairo with:
-  * [SDL2](https://github.com/treeform/quickcairo/blob/master/examples/realtime_sdl2.nim)
-  * [GLUT](https://github.com/treeform/quickcairo/blob/master/examples/realtime_glut.nim)
-  * [GLFW](https://github.com/treeform/quickcairo/blob/master/examples/realtime_glfw.nim)
+  * [SDL2](tests/realtime_sdl2.nim)
+  * [GLUT](tests/realtime_glut.nim)
+  * [GLFW](tests/realtime_glfw.nim)
 
 
