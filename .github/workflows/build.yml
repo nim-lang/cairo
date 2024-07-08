@@ -21,6 +21,6 @@ jobs:
         path: ~/.nimble
         key: ${{ runner.os }}-nimble-stable
 
-    - uses: jiro4989/setup-nim-action@v1
+    - uses: jiro4989/setup-nim-action@v2
 
     - run: nimble test -y
